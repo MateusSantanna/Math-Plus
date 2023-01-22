@@ -9,16 +9,17 @@ import Questions from "../../components/Questions/Questions";
 import Results from "../../components/Results/Results";
 import Score from "../../components/Score/Score";
 
-function Game({difficulty, setDifficulty, setBegin, counter, setCounter, counterQuestions, setCounterQuestions}){
-    const [chances, setChances] = useState(3)
+function Game({difficulty, setBegin, counter, setCounter, counterQuestions, setCounterQuestions, setSelect, chances, setChances}){
+    let numbersInitial = [...Array(10).keys()]
+    
     const [resultsGame, setResultsGame] = useState("")
     const [correct, setCorrect] = useState(0);
-    const [questionAsk, setQuestionAsk] = useState("2+2")
-    const [resultExpected, setResultExpected] = useState(4)
-    const [resultReceived, setResultReceived] = useState()    
-    const [numberOne, setNumberOne] = useState()
-    const [numberTwo, setNumberTwo] = useState()
+    const [numberOne, setNumberOne] = useState(numbersInitial[Math.floor(Math.random() * numbersInitial.length)])
+    const [numberTwo, setNumberTwo] = useState(numbersInitial[Math.floor(Math.random() * numbersInitial.length)])
     const [numberThree, setNumberThree] = useState()
+    const [questionAsk, setQuestionAsk] = useState(`${numberOne} + ${numberTwo}`)
+    const [resultExpected, setResultExpected] = useState(numberOne + numberTwo)
+    const [resultReceived, setResultReceived] = useState()    
     const [numberFour, setNumberFour] = useState()
     const [numberFive, setNumberFive] = useState()
     const [operationOne, setOperationOne] = useState()
@@ -34,7 +35,9 @@ function Game({difficulty, setDifficulty, setBegin, counter, setCounter, counter
                  </>
             ) : (
 
-                <> 
+                
+
+                    <> 
                 {resultsGame === "" ? (
                     <Score correct={correct} />
                     ) : (
@@ -58,15 +61,18 @@ function Game({difficulty, setDifficulty, setBegin, counter, setCounter, counter
 
                 {resultsGame === "" ? (
                 <Questions 
+                difficulty={difficulty}
+                numberOne={numberOne} setNumberOne={setNumberOne}
+                numberTwo={numberTwo} setNumberTwo={setNumberTwo}
+                numberThree={numberThree} setNumberThree={setNumberThree}
                 setResultsGame={setResultsGame} 
                 chances={chances} setChances={setChances} 
                 correct={correct} setCorrect={setCorrect} 
-                resultExpected={resultExpected}
+                resultExpected={resultExpected} setResultExpected={setResultExpected}
                 resultReceived={resultReceived} setResultReceived={setResultReceived} 
                 questionAsk={questionAsk} setQuestionAsk={setQuestionAsk}
-
                 />
-                    ) : (
+                ) : (
                     <NextQuestion setResultsGame={setResultsGame} difficulty={difficulty} 
                     correct={correct}
                     resultExpected={resultExpected} setResultExpected={setResultExpected} 
@@ -83,7 +89,12 @@ function Game({difficulty, setDifficulty, setBegin, counter, setCounter, counter
                     />    
                     
                     )}
-                    <ModalLose chances={chances} correct={correct} />
+
+          
+
+                    <ModalLose chances={chances} correct={correct} setSelect={setSelect} setBegin={setBegin} setCounter={setCounter} setCounterQuestions={setCounterQuestions} />
+                    
+                    
                 </>
             )
 
@@ -95,8 +106,3 @@ function Game({difficulty, setDifficulty, setBegin, counter, setCounter, counter
 
 export default Game;
 
-// [{
-//     number1: 3,
-//     operator: +,
-//     number2: 4,
-// }]

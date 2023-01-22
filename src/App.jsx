@@ -8,15 +8,17 @@ function App() {
   const [difficulty, setDifficulty] = useState("")
   const [counter, setCounter] = useState(3);
   const [counterQuestions, setCounterQuestions] = useState(10);
+  const [chances, setChances] = useState(3)
 
 
   return (
     
     begin === true ? (
-      <Game difficulty={difficulty} setDifficulty={setDifficulty} setBegin={setBegin} counter={counter} setCounter={setCounter} counterQuestions={counterQuestions} setCounterQuestions={setCounterQuestions} />
+      <Game chances={chances} setChances={setChances} difficulty={difficulty} setDifficulty={setDifficulty} setBegin={setBegin} counter={counter} setCounter={setCounter} counterQuestions={counterQuestions} setCounterQuestions={setCounterQuestions} setSelect={setSelect}/>
     ) :(
       <Home select={select} setSelect={setSelect} setDifficulty={setDifficulty} setBegin={setBegin}/>
     )
+   
   )
 }
 

@@ -1,6 +1,21 @@
 import { DivError } from "./style";
 
-function ModalLose({correct, chances}){
+function ModalLose({correct, chances, setBegin, setSelect, setCounter, setCounterQuestions}){
+
+  function mainMenu(){
+    setBegin(false)
+    setSelect(false)
+    setCounter(3)
+    setCounterQuestions(10)
+  }
+
+  function backDifficulty(){
+    setBegin(false)
+    setSelect(true)
+    setCounter(3)
+    setCounterQuestions(10)
+  }
+
       
     
       return chances === 0 ? ( 
@@ -8,13 +23,12 @@ function ModalLose({correct, chances}){
           <DivError>  
       <h1>FIM DE JOGO</h1>
       <h1>Sua Pontuação foi {correct}</h1>
-      <button>Tentar de Novo</button>
-      <button>Voltar ao Menu Principal</button>
+      <button onClick={() => backDifficulty()}>Tentar de Novo</button>
+      <button onClick={() => mainMenu()}>Voltar ao Menu Principal</button>
         </DivError>
         </>
-      
       ) : (
-        null
+         null
       )
 
 }

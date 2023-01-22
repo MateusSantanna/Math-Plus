@@ -1,13 +1,15 @@
 import { InputAnswer } from "./style"
 
-function Questions({setResultsGame, resultExpected, resultReceived, setResultReceived, chances, setChances, correct, setCorrect, questionAsk}){
+function Questions({setResultsGame, resultExpected, resultReceived, setResultReceived, chances, setChances, correct, setCorrect, questionAsk, setQuestionAsk}){
 
-  function checkAnswer(){
+ 
+ function checkAnswer(){
 
     console.log(resultExpected)
     console.log(resultReceived)
     console.log(typeof resultExpected)
     console.log(typeof resultReceived)
+
     
     if(resultExpected === +resultReceived){
       setResultsGame("Resposta Correta") 
@@ -25,8 +27,8 @@ function Questions({setResultsGame, resultExpected, resultReceived, setResultRec
   <>
 
     <InputAnswer>
-    <h1>Pergunta</h1>
-        <p>{questionAsk}</p>
+        <h1>Pergunta</h1>
+        <h1>{questionAsk}</h1>
       <input
         required
         type="number" 
