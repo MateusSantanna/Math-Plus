@@ -31,7 +31,7 @@ function Game({difficulty, setBegin, counter, setCounter, counterQuestions, setC
 
         return counter > 0 ? (
                  <>
-                    <Counter counter={counter} setCounter={setCounter} />
+                    <Counter counter={counter} setCounter={setCounter} difficulty={difficulty} />
                  </>
             ) : (
 
@@ -39,10 +39,10 @@ function Game({difficulty, setBegin, counter, setCounter, counterQuestions, setC
 
                     <> 
                 {resultsGame === "" ? (
-                    <Score correct={correct} />
+                    <Score correct={correct} chances={chances}/>
                     ) : (
                         <>
-                        <Score correct={correct} />
+                        <Score correct={correct} chances={chances}/>
                         <Results resultsGame={resultsGame} chances={chances} setChances={setChances} />
                         </>
                 )}
@@ -74,7 +74,7 @@ function Game({difficulty, setBegin, counter, setCounter, counterQuestions, setC
                 />
                 ) : (
                     <NextQuestion setResultsGame={setResultsGame} difficulty={difficulty} 
-                    correct={correct}
+                    correct={correct} chances={chances}
                     resultExpected={resultExpected} setResultExpected={setResultExpected} 
                     resultReceived={resultReceived} setResultReceived={setResultReceived} 
                     questionAsk={questionAsk} setQuestionAsk={setQuestionAsk}
@@ -92,7 +92,7 @@ function Game({difficulty, setBegin, counter, setCounter, counterQuestions, setC
 
           
 
-                    <ModalLose chances={chances} correct={correct} setSelect={setSelect} setBegin={setBegin} setCounter={setCounter} setCounterQuestions={setCounterQuestions} />
+                    <ModalLose chances={chances} setChances={setChances} correct={correct} setSelect={setSelect} setBegin={setBegin} setCounter={setCounter} setCounterQuestions={setCounterQuestions} />
                     
                     
                 </>

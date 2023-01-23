@@ -7,7 +7,7 @@ function CounterQuestions({counterQuestions, setCounterQuestions, chances, setCh
         setCounterQuestions(counterQuestions - 1)
         }
         
-        if(counterQuestions === 1){
+        if(counterQuestions === 0){
           setCounterQuestions(0)
           setResultsGame("Tempo Esgotado")
           setChances(chances - 1)

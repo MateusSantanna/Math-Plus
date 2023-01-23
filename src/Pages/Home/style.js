@@ -76,3 +76,18 @@ export const ButtonBack = styled.button`
     margin-top: 1rem;
 
 `
+
+export const InfoDifficultyEasy = styled.h1`
+    color: green;
+    font-size: 1.5rem;
+`
+
+export const InfoDifficultyNormal = styled.h1`
+    color: orange;
+    font-size: 1.5rem;
+`
+
+export const InfoDifficultyHard = styled.h1`
+    color: red;
+    font-size: 1.5rem;
+`

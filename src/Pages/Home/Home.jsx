@@ -1,11 +1,11 @@
-import { ButtonBack, ButtonBegin, ButtonEasy, ButtonHard, ButtonNormal, TitleWeb } from "./style"
+import { ButtonBack, ButtonBegin, ButtonEasy, ButtonHard, ButtonNormal, TitleWeb, InfoDifficultyEasy, InfoDifficultyNormal, InfoDifficultyHard } from "./style"
 
-export function Home({select, setSelect, setDifficulty, setBegin}){ 
-
+export function Home({select, setSelect, setDifficulty, setBegin, setQuestionAsk}){ 
 
     function changeMode(level){
         setDifficulty(level)
         setBegin(true) 
+        
     }
 
     return (
@@ -31,15 +31,22 @@ export function Home({select, setSelect, setDifficulty, setBegin}){
             <div></div>
             <ButtonEasy onClick={() => {changeMode("Fácil")}}>Fácil</ButtonEasy>
             
+            
             <div></div>
             <ButtonNormal onClick={() => {changeMode("Normal")}}>Normal</ButtonNormal>
         
+        
             <div></div>
             <ButtonHard onClick={() => {changeMode("Difícil")}}>Difícil</ButtonHard>
-
+           
             </div>
           
             <ButtonBack onClick={() => setSelect(false)}>Voltar</ButtonBack>
+
+            <InfoDifficultyEasy>Fácil: Recomendado para aqueles que desejam praticar e entender o jogo </InfoDifficultyEasy>
+            <InfoDifficultyNormal>Normal: Recomendado para aqueles que querem uma experiência balanceada </InfoDifficultyNormal>
+            <InfoDifficultyHard>Difícil: Recomendado para aqueles que buscam um Desafio </InfoDifficultyHard>
+            
             </>
         ) }
         </>

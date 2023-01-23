@@ -1,6 +1,6 @@
 import { CounterTime } from "./style";
 
-function Counter({counter, setCounter}){
+function Counter({counter, setCounter, difficulty}){
   function changeTime(){
     if(counter > 0){
     setCounter(counter - 1)
@@ -15,6 +15,7 @@ function Counter({counter, setCounter}){
 
   return ( <>
   <CounterTime>{counter}</CounterTime>
+  <h1>Dificuldade Selecionada: {difficulty}</h1>
   </>
   )
 }

@@ -1,7 +1,6 @@
 import { InputAnswer } from "./style"
 
-function Questions({setResultsGame, resultExpected, resultReceived, setResultReceived, chances, setChances, correct, setCorrect, questionAsk, setQuestionAsk}){
-
+function Questions({setResultsGame, resultExpected, setResultExpected, resultReceived, setResultReceived, chances, setChances, correct, setCorrect, questionAsk, setQuestionAsk}){
  
  function checkAnswer(){
 

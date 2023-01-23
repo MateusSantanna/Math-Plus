@@ -1,12 +1,21 @@
 import { ScoreActual, ScoreText } from "./style";
 
-function Score({correct}){
+function Score({correct, chances}){
 
-  return ( <>
-  <ScoreText>Pontuação</ScoreText>
-  <ScoreActual>{correct}</ScoreActual>
-  </>
-  )
+  return (
+    <>
+    {chances > 0 ? (
+      <>
+      <ScoreText>Pontuação</ScoreText>
+      <ScoreActual>{correct}</ScoreActual>
+      </>
+    )
+    :  
+    null
+    }
+
+    </>
+  ) 
 }
 
 export default Score;

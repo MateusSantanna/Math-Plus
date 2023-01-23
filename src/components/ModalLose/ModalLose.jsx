@@ -1,12 +1,13 @@
 import { DivError } from "./style";
 
-function ModalLose({correct, chances, setBegin, setSelect, setCounter, setCounterQuestions}){
+function ModalLose({correct, chances, setBegin, setSelect, setCounter, setCounterQuestions, setChances}){
 
   function mainMenu(){
     setBegin(false)
     setSelect(false)
     setCounter(3)
     setCounterQuestions(10)
+    setChances(3)
   }
 
   function backDifficulty(){
@@ -14,6 +15,7 @@ function ModalLose({correct, chances, setBegin, setSelect, setCounter, setCounte
     setSelect(true)
     setCounter(3)
     setCounterQuestions(10)
+    setChances(3)
   }
 
       
