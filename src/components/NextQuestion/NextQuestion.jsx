@@ -1,6 +1,7 @@
 export function NextQuestion({setResultsGame, 
   questionAsk, setQuestionAsk, 
   resultExpected, setResultExpected, 
+  setResultReceived,
   difficulty, 
   numberOne, setNumberOne, 
   numberTwo, setNumberTwo, 
@@ -20,6 +21,7 @@ correct, chances}){
       setOperationTwo(operations[Math.floor(Math.random() * operations.length)])
       setResultsGame("")
       setCounterQuestions(10)
+      setResultReceived("")
       
       if(difficulty === "Fácil"){
         setNumberOne(numbersEasy[Math.floor(Math.random() * numbersEasy.length)])
