@@ -65,8 +65,8 @@ correct, chances}){
                 }
             
                 if(operationOne === "+" && operationTwo === "/" && correct >= 20){
-                  setResultExpected(numberOne + Math.floor(numberTwo / (numberThree + 1)))
-                  setQuestionAsk(`${numberOne} + ${numberTwo} / ${numberThree + 1}`)
+                  setResultExpected(Math.floor((numberOne + numberTwo) / (numberThree + 1)))
+                  setQuestionAsk(`(${numberOne} + ${numberTwo}) / ${numberThree + 1}`)
                   }
 
                   if(operationOne === "-" && operationTwo === "+" && correct >= 20){
@@ -85,8 +85,8 @@ correct, chances}){
                         }
                     
                         if(operationOne === "-" && operationTwo === "/" && correct >= 20){
-                          setResultExpected(numberOne - Math.floor(numberTwo / (numberThree + 1)))
-                          setQuestionAsk(`${numberOne} - ${numberTwo} / ${(numberThree + 1)}`)
+                          setResultExpected(Math.floor((numberOne - numberTwo) / (numberThree + 1)))
+                          setQuestionAsk(`(${numberOne} - ${numberTwo}) / ${(numberThree + 1)}`)
                           }
 
                           if(operationOne === "*" && operationTwo === "+" && correct >= 20){
@@ -105,23 +105,23 @@ correct, chances}){
                                 }
                             
                                 if(operationOne === "*" && operationTwo === "/" && correct >= 20){
-                                  setResultExpected(numberOne * Math.floor(numberTwo / (numberThree + 1)))
-                                  setQuestionAsk(`${numberOne} * ${numberTwo} / ${(numberThree + 1)}`)
+                                  setResultExpected(Math.floor((numberOne * numberTwo) / (numberThree + 1)))
+                                  setQuestionAsk(`(${numberOne} * ${numberTwo}) / ${(numberThree + 1)}`)
                                   }
 
                                   if(operationOne === "/" && operationTwo === "+" && correct >= 20){
-                                    setResultExpected(Math.floor(numberOne / (numberTwo + 1)) + numberThree)
-                                    setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} + ${numberThree}`)
+                                    setResultExpected(numberOne / Math.floor(((numberTwo + 1) + numberThree))
+                                    setQuestionAsk(`${numberOne} / (${numberTwo + 1} + ${numberThree})`)
                                     }
                                 
                                     if(operationOne === "/" && operationTwo === "-" && correct >= 20){
-                                      setResultExpected(Math.floor(numberOne / (numberTwo + 1)) - numberThree)
+                                      setResultExpected(numberOne / Math.floor(((numberTwo + 1) - numberThree))
                                       setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} - ${numberThree}`)
                                       }
 
                                       if(operationOne === "/" && operationTwo === "*" && correct >= 20){
-                                        setResultExpected(Math.floor(numberOne / (numberTwo + 1)) * numberThree)
-                                        setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} * ${numberThree}`)
+                                        setResultExpected(numberOne / Math.floor(((numberTwo + 1) * (numberThree + 1))
+                                        setQuestionAsk(`${numberOne} / (${(numberTwo + 1)} * ${numberThree + 1})`)
                                         }
                                     
                                         if(operationOne === "/" && operationTwo === "/" && correct >= 20){
@@ -158,87 +158,86 @@ correct, chances}){
                                                   }
 
                                                 // Ultrapassar os 10 Pontos 
-                                                if(operationOne === "+" && operationTwo === "+" && correct >= 10){
+                                                if(operationOne === "+" && operationTwo === "+" && correct >= 20){
                                                   setResultExpected(numberOne + numberTwo + numberThree)
                                                   setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`)
                                                   }
-                                              
-                                                  if(operationOne === "+" && operationTwo === "-" && correct >= 10){
+
+                                                  if(operationOne === "+" && operationTwo === "-" && correct >= 20){
                                                     setResultExpected(numberOne + numberTwo - numberThree)
                                                     setQuestionAsk(`${numberOne} + ${numberTwo} - ${numberThree}`)
                                                     }
-                                              
-                                                    if(operationOne === "+" && operationTwo === "*" && correct >= 10){
+
+                                                    if(operationOne === "+" && operationTwo === "*" && correct >= 20){
                                                       setResultExpected(numberOne + numberTwo * numberThree)
                                                       setQuestionAsk(`${numberOne} + ${numberTwo} * ${numberThree}`)
                                                       }
-                                                  
-                                                      if(operationOne === "+" && operationTwo === "/" && correct >= 10){
-                                                        setResultExpected(numberOne + Math.floor(numberTwo / (numberThree + 1)))
-                                                        setQuestionAsk(`${numberOne} + ${numberTwo} / ${numberThree + 1}`)
+
+                                                      if(operationOne === "+" && operationTwo === "/" && correct >= 20){
+                                                        setResultExpected(Math.floor((numberOne + numberTwo) / (numberThree + 1)))
+                                                        setQuestionAsk(`(${numberOne} + ${numberTwo}) / ${numberThree + 1}`)
                                                         }
-                                      
-                                                        if(operationOne === "-" && operationTwo === "+" && correct >= 10){
+
+                                                        if(operationOne === "-" && operationTwo === "+" && correct >= 20){
                                                           setResultExpected(numberOne - numberTwo + numberThree)
                                                           setQuestionAsk(`${numberOne} - ${numberTwo} + ${numberThree}`)
                                                           }
-                                                      
-                                                          if(operationOne === "-" && operationTwo === "-" && correct >= 10){
+
+                                                          if(operationOne === "-" && operationTwo === "-" && correct >= 20){
                                                             setResultExpected(numberOne - numberTwo - numberThree)
                                                             setQuestionAsk(`${numberOne} - ${numberTwo} - ${numberThree}`)
                                                             }
-                                      
-                                                            if(operationOne === "-" && operationTwo === "*" && correct >= 10){
+
+                                                            if(operationOne === "-" && operationTwo === "*" && correct >= 20){
                                                               setResultExpected(numberOne - numberTwo * numberThree)
                                                               setQuestionAsk(`${numberOne} - ${numberTwo} * ${numberThree}`)
                                                               }
-                                                          
-                                                              if(operationOne === "-" && operationTwo === "/" && correct >= 10){
-                                                                setResultExpected(numberOne - Math.floor(numberTwo / (numberThree + 1)))
-                                                                setQuestionAsk(`${numberOne} - ${numberTwo} / ${(numberThree + 1)}`)
+
+                                                              if(operationOne === "-" && operationTwo === "/" && correct >= 20){
+                                                                setResultExpected(Math.floor((numberOne - numberTwo) / (numberThree + 1)))
+                                                                setQuestionAsk(`(${numberOne} - ${numberTwo}) / ${(numberThree + 1)}`)
                                                                 }
-                                      
-                                                                if(operationOne === "*" && operationTwo === "+" && correct >= 10){
+
+                                                                if(operationOne === "*" && operationTwo === "+" && correct >= 20){
                                                                   setResultExpected(numberOne * numberTwo + numberThree)
                                                                   setQuestionAsk(`${numberOne} * ${numberTwo} + ${numberThree}`)
                                                                   }
-                                                              
-                                                                  if(operationOne === "*" && operationTwo === "-" && correct >= 10){
+
+                                                                  if(operationOne === "*" && operationTwo === "-" && correct >= 20){
                                                                     setResultExpected(numberOne * numberTwo - numberThree)
                                                                     setQuestionAsk(`${numberOne} * ${numberTwo} - ${numberThree}`)
                                                                     }
-                                      
-                                                                    if(operationOne === "*" && operationTwo === "*" && correct >= 10){
+
+                                                                    if(operationOne === "*" && operationTwo === "*" && correct >= 20){
                                                                       setResultExpected(numberOne * numberTwo * numberThree)
                                                                       setQuestionAsk(`${numberOne} * ${numberTwo} * ${numberThree}`)
                                                                       }
-                                                                  
-                                                                      if(operationOne === "*" && operationTwo === "/" && correct >= 10){
-                                                                        setResultExpected(numberOne * Math.floor(numberTwo / (numberThree + 1)))
-                                                                        setQuestionAsk(`${numberOne} * ${numberTwo} / ${(numberThree + 1)}`)
+
+                                                                      if(operationOne === "*" && operationTwo === "/" && correct >= 20){
+                                                                        setResultExpected(Math.floor((numberOne * numberTwo) / (numberThree + 1)))
+                                                                        setQuestionAsk(`(${numberOne} * ${numberTwo}) / ${(numberThree + 1)}`)
                                                                         }
-                                      
-                                                                        if(operationOne === "/" && operationTwo === "+" && correct >= 10){
-                                                                          setResultExpected(Math.floor(numberOne / (numberTwo + 1)) + numberThree)
-                                                                          setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} + ${numberThree}`)
+
+                                                                        if(operationOne === "/" && operationTwo === "+" && correct >= 20){
+                                                                          setResultExpected(numberOne / Math.floor(((numberTwo + 1) + numberThree))
+                                                                          setQuestionAsk(`${numberOne} / (${numberTwo + 1} + ${numberThree})`)
                                                                           }
-                                                                      
-                                                                          if(operationOne === "/" && operationTwo === "-" && correct >= 10){
-                                                                            setResultExpected(Math.floor(numberOne / (numberTwo + 1)) - numberThree)
+
+                                                                          if(operationOne === "/" && operationTwo === "-" && correct >= 20){
+                                                                            setResultExpected(numberOne / Math.floor(((numberTwo + 1) - numberThree))
                                                                             setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} - ${numberThree}`)
                                                                             }
-                                      
-                                                                            if(operationOne === "/" && operationTwo === "*" && correct >= 10){
-                                                                              setResultExpected(Math.floor(numberOne / (numberTwo + 1)) * numberThree)
-                                                                              setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} * ${numberThree}`)
+
+                                                                            if(operationOne === "/" && operationTwo === "*" && correct >= 20){
+                                                                              setResultExpected(numberOne / Math.floor(((numberTwo + 1) * (numberThree + 1))
+                                                                              setQuestionAsk(`${numberOne} / (${(numberTwo + 1)} * ${numberThree + 1})`)
                                                                               }
-                                                                          
-                                                                              if(operationOne === "/" && operationTwo === "/" && correct >= 10){
+
+                                                                              if(operationOne === "/" && operationTwo === "/" && correct >= 20){
                                                                                 setResultExpected(Math.floor(numberOne / (numberTwo + 1) / (numberThree + 1)))
                                                                                 setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} / ${(numberThree + 1)}`)
                                                                                 }
                                                                               }
-      
                                                                               
 
                                                                               if(difficulty === "Difícil"){
@@ -247,85 +246,85 @@ correct, chances}){
                                                                                 setNumberThree(numbersHard[Math.floor(Math.random() * numbersHard.length)])
                                     
                                                                                 if(operationOne === "+" && operationTwo === "+"){
-                                                                                  setResultExpected(numberOne + numberTwo + numberThree)
-                                                                                  setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`)
+                                                                                setResultExpected(numberOne + numberTwo + numberThree)
+                                                                                setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`)
+                                                                                }
+
+                                                                                if(operationOne === "+" && operationTwo === "-"){
+                                                                                setResultExpected(numberOne + numberTwo - numberThree)
+                                                                                setQuestionAsk(`${numberOne} + ${numberTwo} - ${numberThree}`)
+                                                                                }
+
+                                                                                if(operationOne === "+" && operationTwo === "*"){
+                                                                                  setResultExpected(numberOne + numberTwo * numberThree)
+                                                                                  setQuestionAsk(`${numberOne} + ${numberTwo} * ${numberThree}`)
                                                                                   }
-                                                                              
-                                                                                  if(operationOne === "+" && operationTwo === "-"){
-                                                                                    setResultExpected(numberOne + numberTwo - numberThree)
-                                                                                    setQuestionAsk(`${numberOne} + ${numberTwo} - ${numberThree}`)
+
+                                                                                  if(operationOne === "+" && operationTwo === "/"){
+                                                                                    setResultExpected(Math.floor((numberOne + numberTwo) / (numberThree + 1)))
+                                                                                    setQuestionAsk(`(${numberOne} + ${numberTwo}) / ${numberThree + 1}`)
                                                                                     }
-                                                                              
-                                                                                    if(operationOne === "+" && operationTwo === "*"){
-                                                                                      setResultExpected(numberOne + numberTwo * numberThree)
-                                                                                      setQuestionAsk(`${numberOne} + ${numberTwo} * ${numberThree}`)
+
+                                                                                    if(operationOne === "-" && operationTwo === "+"){
+                                                                                      setResultExpected(numberOne - numberTwo + numberThree)
+                                                                                      setQuestionAsk(`${numberOne} - ${numberTwo} + ${numberThree}`)
                                                                                       }
-                                                                                  
-                                                                                      if(operationOne === "+" && operationTwo === "/"){
-                                                                                        setResultExpected(numberOne + Math.floor(numberTwo / (numberThree + 1)))
-                                                                                        setQuestionAsk(`${numberOne} + ${numberTwo} / ${numberThree + 1}`)
+
+                                                                                      if(operationOne === "-" && operationTwo === "-"){
+                                                                                        setResultExpected(numberOne - numberTwo - numberThree)
+                                                                                        setQuestionAsk(`${numberOne} - ${numberTwo} - ${numberThree}`)
                                                                                         }
-                                                                      
-                                                                                        if(operationOne === "-" && operationTwo === "+"){
-                                                                                          setResultExpected(numberOne - numberTwo + numberThree)
-                                                                                          setQuestionAsk(`${numberOne} - ${numberTwo} + ${numberThree}`)
+
+                                                                                        if(operationOne === "-" && operationTwo === "*"){
+                                                                                          setResultExpected(numberOne - numberTwo * numberThree)
+                                                                                          setQuestionAsk(`${numberOne} - ${numberTwo} * ${numberThree}`)
                                                                                           }
-                                                                                      
-                                                                                          if(operationOne === "-" && operationTwo === "-"){
-                                                                                            setResultExpected(numberOne - numberTwo - numberThree)
-                                                                                            setQuestionAsk(`${numberOne} - ${numberTwo} - ${numberThree}`)
+
+                                                                                          if(operationOne === "-" && operationTwo === "/"){
+                                                                                            setResultExpected(Math.floor((numberOne - numberTwo) / (numberThree + 1)))
+                                                                                            setQuestionAsk(`(${numberOne} - ${numberTwo}) / ${(numberThree + 1)}`)
                                                                                             }
-                                                                      
-                                                                                            if(operationOne === "-" && operationTwo === "*"){
-                                                                                              setResultExpected(numberOne - numberTwo * numberThree)
-                                                                                              setQuestionAsk(`${numberOne} - ${numberTwo} * ${numberThree}`)
+
+                                                                                            if(operationOne === "*" && operationTwo === "+"){
+                                                                                              setResultExpected(numberOne * numberTwo + numberThree)
+                                                                                              setQuestionAsk(`${numberOne} * ${numberTwo} + ${numberThree}`)
                                                                                               }
-                                                                                          
-                                                                                              if(operationOne === "-" && operationTwo === "/"){
-                                                                                                setResultExpected(numberOne - Math.floor(numberTwo / (numberThree + 1)))
-                                                                                                setQuestionAsk(`${numberOne} - ${numberTwo} / ${(numberThree + 1)}`)
+
+                                                                                              if(operationOne === "*" && operationTwo === "-"){
+                                                                                                setResultExpected(numberOne * numberTwo - numberThree)
+                                                                                                setQuestionAsk(`${numberOne} * ${numberTwo} - ${numberThree}`)
                                                                                                 }
-                                                                      
-                                                                                                if(operationOne === "*" && operationTwo === "+"){
-                                                                                                  setResultExpected(numberOne * numberTwo + numberThree)
-                                                                                                  setQuestionAsk(`${numberOne} * ${numberTwo} + ${numberThree}`)
+
+                                                                                                if(operationOne === "*" && operationTwo === "*"){
+                                                                                                  setResultExpected(numberOne * numberTwo * numberThree)
+                                                                                                  setQuestionAsk(`${numberOne} * ${numberTwo} * ${numberThree}`)
                                                                                                   }
-                                                                                              
-                                                                                                  if(operationOne === "*" && operationTwo === "-"){
-                                                                                                    setResultExpected(numberOne * numberTwo - numberThree)
-                                                                                                    setQuestionAsk(`${numberOne} * ${numberTwo} - ${numberThree}`)
+
+                                                                                                  if(operationOne === "*" && operationTwo === "/"){
+                                                                                                    setResultExpected(Math.floor((numberOne * numberTwo) / (numberThree + 1)))
+                                                                                                    setQuestionAsk(`(${numberOne} * ${numberTwo}) / ${(numberThree + 1)}`)
                                                                                                     }
-                                                                      
-                                                                                                    if(operationOne === "*" && operationTwo === "*"){
-                                                                                                      setResultExpected(numberOne * numberTwo * numberThree)
-                                                                                                      setQuestionAsk(`${numberOne} * ${numberTwo} * ${numberThree}`)
+
+                                                                                                    if(operationOne === "/" && operationTwo === "+"){
+                                                                                                      setResultExpected(numberOne / Math.floor(((numberTwo + 1) + numberThree))
+                                                                                                      setQuestionAsk(`${numberOne} / (${numberTwo + 1} + ${numberThree})`)
                                                                                                       }
-                                                                                                  
-                                                                                                      if(operationOne === "*" && operationTwo === "/"){
-                                                                                                        setResultExpected(numberOne * Math.floor(numberTwo / (numberThree + 1)))
-                                                                                                        setQuestionAsk(`${numberOne} * ${numberTwo} / ${(numberThree + 1)}`)
+
+                                                                                                      if(operationOne === "/" && operationTwo === "-"){
+                                                                                                        setResultExpected(numberOne / Math.floor(((numberTwo + 1) - numberThree))
+                                                                                                        setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} - ${numberThree}`)
                                                                                                         }
-                                                                      
-                                                                                                        if(operationOne === "/" && operationTwo === "+"){
-                                                                                                          setResultExpected(Math.floor(numberOne / (numberTwo + 1)) + numberThree)
-                                                                                                          setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} + ${numberThree}`)
+
+                                                                                                        if(operationOne === "/" && operationTwo === "*"){
+                                                                                                          setResultExpected(numberOne / Math.floor(((numberTwo + 1) * (numberThree + 1))
+                                                                                                          setQuestionAsk(`${numberOne} / (${(numberTwo + 1)} * ${numberThree + 1})`)
                                                                                                           }
-                                                                                                      
-                                                                                                          if(operationOne === "/" && operationTwo === "-"){
-                                                                                                            setResultExpected(Math.floor(numberOne / (numberTwo + 1)) - numberThree)
-                                                                                                            setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} - ${numberThree}`)
+
+                                                                                                          if(operationOne === "/" && operationTwo === "/"){
+                                                                                                            setResultExpected(Math.floor(numberOne / (numberTwo + 1) / (numberThree + 1)))
+                                                                                                            setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} / ${(numberThree + 1)}`)
                                                                                                             }
-                                                                      
-                                                                                                            if(operationOne === "/" && operationTwo === "*"){
-                                                                                                              setResultExpected(Math.floor(numberOne / (numberTwo + 1)) * numberThree)
-                                                                                                              setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} * ${numberThree}`)
-                                                                                                              }
-                                                                                                          
-                                                                                                              if(operationOne === "/" && operationTwo === "/"){
-                                                                                                                setResultExpected(Math.floor(numberOne / (numberTwo + 1) / (numberThree + 1)))
-                                                                                                                setQuestionAsk(`${numberOne} / ${(numberTwo + 1)} / ${(numberThree + 1)}`)
-                                                                                                                }
-                                                                                                              }
+                                                                                                          }         
                                           
                                                                                                                   
  
