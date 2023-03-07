@@ -1,4 +1,4 @@
-import { DivError } from "./style";
+import { DivGameOver } from "./style";
 
 function ModalLose({
   correct,
@@ -27,12 +27,14 @@ function ModalLose({
 
   return chances === 0 ? (
     <>
-      <DivError>
-        <h1>FIM DE JOGO</h1>
-        <h1>Sua Pontuação foi {correct}</h1>
-        <button onClick={() => backDifficulty()}>Tentar de Novo</button>
-        <button onClick={() => mainMenu()}>Voltar ao Menu Principal</button>
-      </DivError>
+      <DivGameOver>
+        <div>
+          <h1>FIM DE JOGO</h1>
+          <h1>Sua Pontuação foi {correct}</h1>
+          <button onClick={() => backDifficulty()}>Tentar de Novo</button>
+          <button onClick={() => mainMenu()}>Voltar ao Menu Principal</button>
+        </div>
+      </DivGameOver>
     </>
   ) : null;
 }

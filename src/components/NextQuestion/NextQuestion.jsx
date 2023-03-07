@@ -128,18 +128,24 @@ export function NextQuestion({
       }
 
       if (operationOne === "/" && operationTwo === "+" && correct >= 20) {
-        setResultExpected(numberOne / Math.floor(numberTwo + 1 + numberThree));
+        setResultExpected(
+          Math.floor(numberOne / Math.floor(numberTwo + 1 + numberThree))
+        );
         setQuestionAsk(`${numberOne} / (${numberTwo + 1} + ${numberThree})`);
       }
 
       if (operationOne === "/" && operationTwo === "-" && correct >= 20) {
-        setResultExpected(numberOne / Math.floor(numberTwo + 1 - numberThree));
-        setQuestionAsk(`${numberOne} / ${numberTwo + 1} - ${numberThree}`);
+        setResultExpected(
+          Math.floor(numberOne / Math.floor(numberTwo + 1 - numberThree))
+        );
+        setQuestionAsk(`${numberOne} / (${numberTwo + 1} - ${numberThree})`);
       }
 
       if (operationOne === "/" && operationTwo === "*" && correct >= 20) {
         setResultExpected(
-          numberOne / Math.floor((numberTwo + 1) * (numberThree + 1))
+          Math.floor(
+            numberOne / Math.floor((numberTwo + 1) * (numberThree + 1))
+          )
         );
         setQuestionAsk(
           `${numberOne} / (${numberTwo + 1} * ${numberThree + 1})`

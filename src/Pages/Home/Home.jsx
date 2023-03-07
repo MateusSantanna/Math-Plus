@@ -28,7 +28,8 @@ export function Home({
         <>
           <TitleWeb>
             <h1>MATH</h1>
-            <h4>mática</h4>
+            <h4>-</h4>
+            <h4>PLUS</h4>
           </TitleWeb>
           <h1>Venha testar seus conhecimentos de Matemática</h1>
           <ButtonBegin onClick={() => setSelect(true)}>Começar</ButtonBegin>
