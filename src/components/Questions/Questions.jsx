@@ -3,7 +3,6 @@ import { InputAnswer } from "./style";
 function Questions({
   setResultsGame,
   resultExpected,
-  setResultExpected,
   resultReceived,
   setResultReceived,
   chances,
@@ -11,14 +10,8 @@ function Questions({
   correct,
   setCorrect,
   questionAsk,
-  setQuestionAsk,
 }) {
   function checkAnswer() {
-    console.log(resultExpected);
-    console.log(resultReceived);
-    console.log(typeof resultExpected);
-    console.log(typeof resultReceived);
-
     if (resultExpected === +resultReceived) {
       setResultsGame("Resposta Correta");
       setCorrect(correct + 1);
