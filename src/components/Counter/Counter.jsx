@@ -1,9 +1,10 @@
 import { CounterTime } from "./style";
 
-function Counter({ counter, setCounter, difficulty }) {
+function Counter({ counter, setCounter, difficulty, createQuestion }) {
   function changeTime() {
     if (counter > 0) {
       setCounter(counter - 1);
+      createQuestion();
     }
 
     if (counter === 1) {

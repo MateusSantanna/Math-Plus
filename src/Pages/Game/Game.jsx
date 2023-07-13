@@ -20,24 +20,393 @@ function Game({
   chances,
   setChances,
 }) {
-  let numbersInitial = [...Array(10).keys()];
-
   const [resultsGame, setResultsGame] = useState("");
   const [correct, setCorrect] = useState(0);
-  const [numberOne, setNumberOne] = useState(
-    numbersInitial[Math.floor(Math.random() * numbersInitial.length)]
-  );
-  const [numberTwo, setNumberTwo] = useState(
-    numbersInitial[Math.floor(Math.random() * numbersInitial.length)]
-  );
+  const [numberOne, setNumberOne] = useState();
+  const [numberTwo, setNumberTwo] = useState();
   const [numberThree, setNumberThree] = useState();
-  const [questionAsk, setQuestionAsk] = useState(`${numberOne} + ${numberTwo}`);
-  const [resultExpected, setResultExpected] = useState(numberOne + numberTwo);
+  const [questionAsk, setQuestionAsk] = useState();
+  const [resultExpected, setResultExpected] = useState();
   const [resultReceived, setResultReceived] = useState();
-  const [numberFour, setNumberFour] = useState();
-  const [numberFive, setNumberFive] = useState();
   const [operationOne, setOperationOne] = useState();
   const [operationTwo, setOperationTwo] = useState();
+
+  let numbersEasy = [...Array(10).keys()];
+  let operations = ["+", "-", "*", "/"];
+  let numbersNormal = [...Array(20).keys()];
+  let numbersHard = [...Array(100).keys()];
+
+  function createQuestion() {
+    setOperationOne(operations[Math.floor(Math.random() * operations.length)]);
+    setOperationTwo(operations[Math.floor(Math.random() * operations.length)]);
+    setResultsGame("");
+    setCounterQuestions(10);
+    setResultReceived("");
+
+    if (difficulty === "Fácil") {
+      setNumberOne(numbersEasy[Math.floor(Math.random() * numbersEasy.length)]);
+      setNumberTwo(numbersEasy[Math.floor(Math.random() * numbersEasy.length)]);
+      setNumberThree(
+        numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
+      );
+
+      if (operationOne === "+") {
+        setResultExpected(numberOne + numberTwo);
+        setQuestionAsk(`${numberOne} + ${numberTwo}`);
+      }
+
+      if (operationOne === "-") {
+        setResultExpected(numberOne - numberTwo);
+        setQuestionAsk(`${numberOne} - ${numberTwo}`);
+      }
+
+      if (operationOne === "*") {
+        setResultExpected(numberOne * numberTwo);
+        setQuestionAsk(`${numberOne} * ${numberTwo}`);
+      }
+
+      if (operationOne === "/") {
+        setResultExpected(Math.floor(numberOne / (numberTwo + 1)));
+        setQuestionAsk(`${numberOne} / ${numberTwo + 1}`);
+      }
+
+      // Ultrapassar os 20 Pontos
+      if (operationOne === "+" && operationTwo === "+" && correct >= 20) {
+        setResultExpected(numberOne + numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "-" && correct >= 20) {
+        setResultExpected(numberOne + numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "*" && correct >= 20) {
+        setResultExpected(numberOne + numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "/" && correct >= 20) {
+        setResultExpected(
+          Math.floor((numberOne + numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} + ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "+" && correct >= 20) {
+        setResultExpected(numberOne - numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "-" && correct >= 20) {
+        setResultExpected(numberOne - numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "*" && correct >= 20) {
+        setResultExpected(numberOne - numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "/" && correct >= 20) {
+        setResultExpected(
+          Math.floor((numberOne - numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} - ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "+" && correct >= 20) {
+        setResultExpected(numberOne * numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "-" && correct >= 20) {
+        setResultExpected(numberOne * numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "*" && correct >= 20) {
+        setResultExpected(numberOne * numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "/" && correct >= 20) {
+        setResultExpected(
+          Math.floor((numberOne * numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} * ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "/" && operationTwo === "+" && correct >= 20) {
+        setResultExpected(
+          Math.floor(numberOne / Math.floor(numberTwo + 1 + numberThree))
+        );
+        setQuestionAsk(`${numberOne} / (${numberTwo + 1} + ${numberThree})`);
+      }
+
+      if (operationOne === "/" && operationTwo === "-" && correct >= 20) {
+        setResultExpected(
+          Math.floor(numberOne / Math.floor(numberTwo + 1 - numberThree))
+        );
+        setQuestionAsk(`${numberOne} / (${numberTwo + 1} - ${numberThree})`);
+      }
+
+      if (operationOne === "/" && operationTwo === "*" && correct >= 20) {
+        setResultExpected(
+          Math.floor(
+            numberOne / Math.floor((numberTwo + 1) * (numberThree + 1))
+          )
+        );
+        setQuestionAsk(
+          `${numberOne} / (${numberTwo + 1} * ${numberThree + 1})`
+        );
+      }
+
+      if (operationOne === "/" && operationTwo === "/" && correct >= 20) {
+        setResultExpected(
+          Math.floor(numberOne / (numberTwo + 1) / (numberThree + 1))
+        );
+        setQuestionAsk(`${numberOne} / ${numberTwo + 1} / ${numberThree + 1}`);
+      }
+    }
+
+    if (difficulty === "Normal") {
+      setNumberOne(
+        numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
+      );
+      setNumberTwo(
+        numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
+      );
+      setNumberThree(
+        numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
+      );
+
+      if (operationOne === "+") {
+        setResultExpected(numberOne + numberTwo);
+        setQuestionAsk(`${numberOne} + ${numberTwo}`);
+      }
+
+      if (operationOne === "-") {
+        setResultExpected(numberOne - numberTwo);
+        setQuestionAsk(`${numberOne} - ${numberTwo}`);
+      }
+
+      if (operationOne === "*") {
+        setResultExpected(numberOne * numberTwo);
+        setQuestionAsk(`${numberOne} * ${numberTwo}`);
+      }
+
+      if (operationOne === "/") {
+        setResultExpected(Math.floor(numberOne / (numberTwo + 1)));
+        setQuestionAsk(`${numberOne} / ${numberTwo + 1}`);
+      }
+
+      // Ultrapassar os 10 Pontos
+      if (operationOne === "+" && operationTwo === "+") {
+        setResultExpected(numberOne + numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "-" && correct >= 10) {
+        setResultExpected(numberOne + numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "*" && correct >= 10) {
+        setResultExpected(numberOne + numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "/" && correct >= 10) {
+        setResultExpected(
+          Math.floor((numberOne + numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} + ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "+" && correct >= 10) {
+        setResultExpected(numberOne - numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "-" && correct >= 10) {
+        setResultExpected(numberOne - numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "*" && correct >= 10) {
+        setResultExpected(numberOne - numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "/" && correct >= 10) {
+        setResultExpected(
+          Math.floor((numberOne - numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} - ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "+" && correct >= 10) {
+        setResultExpected(numberOne * numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "-" && correct >= 10) {
+        setResultExpected(numberOne * numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "*" && correct >= 10) {
+        setResultExpected(numberOne * numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "/" && correct >= 10) {
+        setResultExpected(
+          Math.floor((numberOne * numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} * ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "/" && operationTwo === "+" && correct >= 10) {
+        setResultExpected(
+          Math.floor(numberOne / Math.floor(numberTwo + 1 + numberThree))
+        );
+        setQuestionAsk(`${numberOne} / (${numberTwo + 1} + ${numberThree})`);
+      }
+
+      if (operationOne === "/" && operationTwo === "-" && correct >= 10) {
+        setResultExpected(
+          Math.floor(numberOne / Math.floor(numberTwo + 1 - numberThree))
+        );
+        setQuestionAsk(`${numberOne} / (${numberTwo + 1} - ${numberThree})`);
+      }
+
+      if (operationOne === "/" && operationTwo === "*" && correct >= 10) {
+        setResultExpected(
+          Math.floor(
+            numberOne / Math.floor((numberTwo + 1) * (numberThree + 1))
+          )
+        );
+        setQuestionAsk(
+          `${numberOne} / (${numberTwo + 1} * ${numberThree + 1})`
+        );
+      }
+
+      if (operationOne === "/" && operationTwo === "/" && correct >= 10) {
+        setResultExpected(
+          Math.floor(numberOne / (numberTwo + 1) / (numberThree + 1))
+        );
+        setQuestionAsk(`${numberOne} / ${numberTwo + 1} / ${numberThree + 1}`);
+      }
+    }
+
+    if (difficulty === "Difícil") {
+      setNumberOne(numbersHard[Math.floor(Math.random() * numbersHard.length)]);
+      setNumberTwo(numbersHard[Math.floor(Math.random() * numbersHard.length)]);
+      setNumberThree(
+        numbersHard[Math.floor(Math.random() * numbersHard.length)]
+      );
+
+      if (operationOne === "+" && operationTwo === "+") {
+        setResultExpected(numberOne + numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "-") {
+        setResultExpected(numberOne + numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "*") {
+        setResultExpected(numberOne + numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} + ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "+" && operationTwo === "/") {
+        setResultExpected(
+          Math.floor((numberOne + numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} + ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "+") {
+        setResultExpected(numberOne - numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "-") {
+        setResultExpected(numberOne - numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "*") {
+        setResultExpected(numberOne - numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} - ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "-" && operationTwo === "/") {
+        setResultExpected(
+          Math.floor((numberOne - numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} - ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "+") {
+        setResultExpected(numberOne * numberTwo + numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} + ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "-") {
+        setResultExpected(numberOne * numberTwo - numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} - ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "*") {
+        setResultExpected(numberOne * numberTwo * numberThree);
+        setQuestionAsk(`${numberOne} * ${numberTwo} * ${numberThree}`);
+      }
+
+      if (operationOne === "*" && operationTwo === "/") {
+        setResultExpected(
+          Math.floor((numberOne * numberTwo) / (numberThree + 1))
+        );
+        setQuestionAsk(`(${numberOne} * ${numberTwo}) / ${numberThree + 1}`);
+      }
+
+      if (operationOne === "/" && operationTwo === "+") {
+        setResultExpected(
+          Math.floor(numberOne / Math.floor(numberTwo + 1 + numberThree))
+        );
+        setQuestionAsk(`${numberOne} / (${numberTwo + 1} + ${numberThree})`);
+      }
+
+      if (operationOne === "/" && operationTwo === "-") {
+        setResultExpected(
+          Math.floor(numberOne / Math.floor(numberTwo + 1 - numberThree))
+        );
+        setQuestionAsk(`${numberOne} / (${numberTwo + 1} - ${numberThree})`);
+      }
+
+      if (operationOne === "/" && operationTwo === "*") {
+        setResultExpected(
+          Math.floor(
+            numberOne / Math.floor((numberTwo + 1) * (numberThree + 1))
+          )
+        );
+        setQuestionAsk(
+          `${numberOne} / (${numberTwo + 1} * ${numberThree + 1})`
+        );
+      }
+
+      if (operationOne === "/" && operationTwo === "/") {
+        setResultExpected(
+          Math.floor(numberOne / (numberTwo + 1) / (numberThree + 1))
+        );
+        setQuestionAsk(`${numberOne} / ${numberTwo + 1} / ${numberThree + 1}`);
+      }
+    }
+  }
 
   if (["Fácil", "Normal", "Difícil"].includes(difficulty)) {
     return counter > 0 ? (
@@ -46,6 +415,7 @@ function Game({
           counter={counter}
           setCounter={setCounter}
           difficulty={difficulty}
+          createQuestion={createQuestion}
         />
       </>
     ) : (
@@ -82,54 +452,30 @@ function Game({
 
         {resultsGame === "" ? (
           <Questions
-            difficulty={difficulty}
-            numberOne={numberOne}
-            setNumberOne={setNumberOne}
-            numberTwo={numberTwo}
-            setNumberTwo={setNumberTwo}
-            numberThree={numberThree}
-            setNumberThree={setNumberThree}
             setResultsGame={setResultsGame}
             chances={chances}
             setChances={setChances}
             correct={correct}
             setCorrect={setCorrect}
             resultExpected={resultExpected}
-            setResultExpected={setResultExpected}
             resultReceived={resultReceived}
             setResultReceived={setResultReceived}
             questionAsk={questionAsk}
-            setQuestionAsk={setQuestionAsk}
           />
         ) : (
           <NextQuestion
-            setResultsGame={setResultsGame}
-            difficulty={difficulty}
-            correct={correct}
-            chances={chances}
             resultExpected={resultExpected}
-            setResultExpected={setResultExpected}
             resultReceived={resultReceived}
-            setResultReceived={setResultReceived}
             questionAsk={questionAsk}
-            setQuestionAsk={setQuestionAsk}
-            numberOne={numberOne}
-            setNumberOne={setNumberOne}
-            numberTwo={numberTwo}
-            setNumberTwo={setNumberTwo}
-            numberThree={numberThree}
-            setNumberThree={setNumberThree}
-            numberFour={numberFour}
-            setNumberFour={setNumberFour}
-            numberFive={numberFive}
-            setNumberFive={setNumberFive}
-            operationOne={operationOne}
-            setOperationOne={setOperationOne}
-            operationTwo={operationTwo}
-            setOperationTwo={setOperationTwo}
-            setCounterQuestions={setCounterQuestions}
           />
         )}
+
+        {resultsGame === "Resposta Correta" ||
+        resultsGame === "Resposta Errada" ? (
+          <button onClick={() => setTimeout(createQuestion, 500)}>
+            Próxima Pergunta
+          </button>
+        ) : null}
 
         <ModalLose
           chances={chances}
