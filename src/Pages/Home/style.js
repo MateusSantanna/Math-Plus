@@ -1,24 +1,5 @@
 import styled from "styled-components";
 
-export const TitleWeb = styled.div`
-  display: flex;
-  background-color: purple;
-  width: 10rem;
-  height: 4rem;
-  text-align: center;
-  line-height: 16px;
-
-  h1 {
-    color: red;
-    font-family: "Nunito", sans-serif;
-  }
-
-  h4 {
-    margin-top: 1.5rem;
-    color: white;
-  }
-`;
-
 export const ButtonBegin = styled.button`
   color: white;
   border-radius: 1rem;
@@ -78,7 +59,7 @@ export const InfoDifficultyEasy = styled.h1`
 `;
 
 export const InfoDifficultyNormal = styled.h1`
-  color: orange;
+  color: #daa520;
   font-size: 1.5rem;
 `;
 

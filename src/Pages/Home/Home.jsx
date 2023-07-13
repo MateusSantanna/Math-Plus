@@ -4,19 +4,12 @@ import {
   ButtonEasy,
   ButtonHard,
   ButtonNormal,
-  TitleWeb,
   InfoDifficultyEasy,
   InfoDifficultyNormal,
   InfoDifficultyHard,
 } from "./style";
 
-export function Home({
-  select,
-  setSelect,
-  setDifficulty,
-  setBegin,
-  setQuestionAsk,
-}) {
+export function Home({ select, setSelect, setDifficulty, setBegin }) {
   function changeMode(level) {
     setDifficulty(level);
     setBegin(true);
@@ -26,21 +19,11 @@ export function Home({
     <>
       {select === false ? (
         <>
-          <TitleWeb>
-            <h1>MATH</h1>
-            <h4>-</h4>
-            <h4>PLUS</h4>
-          </TitleWeb>
           <h1>Venha testar seus conhecimentos de Matemática</h1>
           <ButtonBegin onClick={() => setSelect(true)}>Começar</ButtonBegin>
         </>
       ) : (
         <>
-          <TitleWeb>
-            <h1>MATH</h1>
-            <h4>mática</h4>
-          </TitleWeb>
-
           <h1>Selecione sua dificuldade</h1>
           <div>
             <div></div>
@@ -75,14 +58,14 @@ export function Home({
 
           <InfoDifficultyEasy>
             Fácil: Recomendado para aqueles que desejam praticar e entender o
-            jogo{" "}
+            jogo
           </InfoDifficultyEasy>
           <InfoDifficultyNormal>
             Normal: Recomendado para aqueles que querem uma experiência
-            balanceada{" "}
+            balanceada
           </InfoDifficultyNormal>
           <InfoDifficultyHard>
-            Difícil: Recomendado para aqueles que buscam um Desafio{" "}
+            Difícil: Recomendado para aqueles que buscam um Desafio
           </InfoDifficultyHard>
         </>
       )}
