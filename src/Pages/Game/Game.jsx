@@ -68,23 +68,7 @@ function Game({
       }
 
       if (operationOne === "/") {
-        let divisionResult = numberOne / (numberTwo + 1);
-
-        // Verifica se o resultado é um número inteiro
-        if (!Number.isInteger(divisionResult)) {
-          // Enquanto o resultado for decimal, gera novos números até obter um resultado inteiro
-          while (!Number.isInteger(divisionResult)) {
-            setNumberOne(
-              numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
-            );
-            setNumberTwo(
-              numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
-            );
-            divisionResult = numberOne / (numberTwo + 1);
-          }
-        }
-
-        setResultExpected(Math.floor(divisionResult));
+        setResultExpected(Math.floor(numberOne / (numberTwo + 1)));
         setQuestionAsk(`${numberOne} / ${numberTwo + 1}`);
       }
 
