@@ -8,20 +8,21 @@ function CounterQuestions({
   resultsGame,
   setResultsGame,
 }) {
-  // function changeTimeGame(){
-  //       if(counterQuestions > 0){
-  //       setCounterQuestions(counterQuestions - 1)
-  //       }
+  function changeTimeGame() {
+    if (counterQuestions > 0) {
+      setCounterQuestions(counterQuestions - 1);
+    }
 
-  //       if(counterQuestions === 0){
-  //         setCounterQuestions(0)
-  //         setResultsGame("Tempo Esgotado")
-  //         setChances(chances - 1)
-  //       }
+    if (counterQuestions === 0) {
+      setCounterQuestions(0);
+      setResultsGame("Tempo Esgotado");
+      setChances(chances - 1);
+    }
+  }
 
-  //     }
-
-  // resultsGame === "Resposta Correta" || resultsGame === "Resposta Errada" ? setCounterQuestions(10) : setTimeout(changeTimeGame, 1000)
+  resultsGame === "Resposta Correta" || resultsGame === "Resposta Errada"
+    ? setCounterQuestions(10)
+    : setTimeout(changeTimeGame, 1000);
 
   return counterQuestions > 4 ? (
     <>
