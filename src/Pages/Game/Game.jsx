@@ -1,13 +1,15 @@
 import { useState } from "react";
 import Counter from "../../components/Counter/Counter";
 import CounterQuestions from "../../components/CounterQuestions/CounterQuestions";
-import { CenterTime } from "../../components/CounterQuestions/style";
+
 import InfoAnswers from "../../components/InfoAnswers/InfoAnswers";
 import ModalLose from "../../components/ModalLose/ModalLose";
 import NextQuestion from "../../components/NextQuestion/NextQuestion";
 import Questions from "../../components/Questions/Questions";
 import Results from "../../components/Results/Results";
 import Score from "../../components/Score/Score";
+import { StyledScoreAndResult } from "./style";
+import { CenterTime } from "../../components/CounterQuestions/style";
 
 function Game({
   difficulty,
@@ -66,7 +68,23 @@ function Game({
       }
 
       if (operationOne === "/") {
-        setResultExpected(Math.floor(numberOne / (numberTwo + 1)));
+        let divisionResult = numberOne / (numberTwo + 1);
+
+        // Verifica se o resultado é um número inteiro
+        if (!Number.isInteger(divisionResult)) {
+          // Enquanto o resultado for decimal, gera novos números até obter um resultado inteiro
+          while (!Number.isInteger(divisionResult)) {
+            setNumberOne(
+              numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
+            );
+            setNumberTwo(
+              numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
+            );
+            divisionResult = numberOne / (numberTwo + 1);
+          }
+        }
+
+        setResultExpected(Math.floor(divisionResult));
         setQuestionAsk(`${numberOne} / ${numberTwo + 1}`);
       }
 
@@ -420,36 +438,37 @@ function Game({
       </>
     ) : (
       <>
-        {resultsGame === "" ? (
-          <Score correct={correct} chances={chances} />
-        ) : (
-          <>
+        <StyledScoreAndResult>
+          {resultsGame === "" ? (
             <Score correct={correct} chances={chances} />
-            <Results
-              resultsGame={resultsGame}
-              chances={chances}
-              setChances={setChances}
-            />
+          ) : (
+            <>
+              <Score correct={correct} chances={chances} />
+              <Results
+                resultsGame={resultsGame}
+                chances={chances}
+                setChances={setChances}
+              />
+            </>
+          )}
+
+          {resultsGame === "" ? (
+            <CenterTime>
+              <CounterQuestions
+                counterQuestions={counterQuestions}
+                setCounterQuestions={setCounterQuestions}
+                chances={chances}
+                setChances={setChances}
+                resultsGame={resultsGame}
+                setResultsGame={setResultsGame}
+              />
+            </CenterTime>
+          ) : null}
+
+          <>
+            <InfoAnswers chances={chances} setChances={setChances} />
           </>
-        )}
-
-        <>
-          <InfoAnswers chances={chances} setChances={setChances} />
-        </>
-
-        {resultsGame === "" ? (
-          <CenterTime>
-            <CounterQuestions
-              counterQuestions={counterQuestions}
-              setCounterQuestions={setCounterQuestions}
-              chances={chances}
-              setChances={setChances}
-              resultsGame={resultsGame}
-              setResultsGame={setResultsGame}
-            />
-          </CenterTime>
-        ) : null}
-
+        </StyledScoreAndResult>
         {resultsGame === "" ? (
           <Questions
             setResultsGame={setResultsGame}
@@ -469,7 +488,6 @@ function Game({
             questionAsk={questionAsk}
           />
         )}
-
         {resultsGame === "Resposta Correta" ||
         resultsGame === "Resposta Errada" ? (
           <button onClick={() => setTimeout(createQuestion, 500)}>

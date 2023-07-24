@@ -1,12 +1,14 @@
-import { ScoreActual, ScoreText } from "./style";
+import { ScoreActual, ScoreText, StyledDivScore } from "./style";
 
 function Score({ correct, chances }) {
   return (
     <>
       {chances > 0 ? (
         <>
-          <ScoreText>Pontuação</ScoreText>
-          <ScoreActual>{correct}</ScoreActual>
+          <StyledDivScore>
+            <ScoreText>Pontuação:</ScoreText>
+            <ScoreActual>{correct}</ScoreActual>
+          </StyledDivScore>
         </>
       ) : null}
     </>

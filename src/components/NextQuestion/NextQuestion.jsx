@@ -1,11 +1,22 @@
+import {
+  ParagraphQuestion,
+  ResultExpected,
+  ResultReceived,
+  StyledQuestion,
+} from "./style";
+
 export function NextQuestion({ questionAsk, resultExpected, resultReceived }) {
   return (
     <>
       <>
-        <h1>Pergunta</h1>
-        <p>{questionAsk}</p>
-        <p>A resposta Correta é: {+resultExpected}</p>
-        <p>A sua resposta foi: {resultReceived}</p>
+        <StyledQuestion>
+          <h1>Pergunta</h1>
+          <ParagraphQuestion>{questionAsk}</ParagraphQuestion>
+          <ResultExpected>
+            A resposta Correta é: {+resultExpected}
+          </ResultExpected>
+          <ResultReceived>A sua resposta foi: {resultReceived}</ResultReceived>
+        </StyledQuestion>
       </>
     </>
   );

@@ -1,21 +1,28 @@
 import styled from "styled-components";
 
 export const ScoreCorrect = styled.h1`
-  margin-left: auto;
-  margin-right: auto;
   color: white;
-  width: 10rem;
+  background-color: green;
+
   height: 4rem;
   font-size: 1.5rem;
-  background-color: green;
+  margin-top: 2rem;
+  line-height: 3rem;
+
+  @media (min-width: 767px) {
+    width: 10rem;
+    line-height: 2rem;
+  }
 `;
 
 export const ScoreWrong = styled.h1`
-  margin-left: auto;
-  margin-right: auto;
   color: white;
-  width: 10rem;
+  background-color: red;
   height: 4rem;
   font-size: 1.5rem;
-  background-color: red;
+  margin-top: 2rem;
+
+  @media (min-width: 767px) {
+    width: 10rem;
+  }
 `;
