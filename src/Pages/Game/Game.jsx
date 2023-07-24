@@ -472,11 +472,17 @@ function Game({
             questionAsk={questionAsk}
           />
         )}
+
         {resultsGame === "Resposta Correta" ||
-        resultsGame === "Resposta Errada" ? (
-          <button onClick={() => setTimeout(createQuestion, 500)}>
-            Próxima Pergunta
-          </button>
+        resultsGame === "Resposta Errada" ||
+        resultsGame === "Tempo Esgotado" ? (
+          // Verificar se as chances são maiores que zero
+          chances > 0 ? (
+            // Se ambas as condições forem verdadeiras, o botão "Próxima Pergunta" será renderizado
+            <button onClick={() => setTimeout(createQuestion, 500)}>
+              Próxima Pergunta
+            </button>
+          ) : null
         ) : null}
 
         <ModalLose
