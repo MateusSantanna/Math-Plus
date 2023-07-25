@@ -37,7 +37,7 @@
 
 // export default CounterQuestions;
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { CounterTimeQuestion, TimeCritical } from "./style";
 
 function CounterQuestions({
@@ -48,37 +48,35 @@ function CounterQuestions({
   resultsGame,
   setResultsGame,
 }) {
-  const [timer, setTimer] = useState(10);
-
   useEffect(() => {
     let interval;
-    if (counterQuestions > 0 && timer > 0) {
+    if (counterQuestions > 0) {
       interval = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
+        setCounterQuestions((counter) => counter - 1);
       }, 1000);
     }
 
     return () => {
       clearInterval(interval);
     };
-  }, [counterQuestions, timer]);
+  }, [counterQuestions, setCounterQuestions]);
 
   useEffect(() => {
-    if (timer === 0) {
+    if (counterQuestions === 0) {
       setResultsGame("Tempo Esgotado");
-      setChances((prevChances) => prevChances - 1);
+      setChances((chances) => chances - 1);
 
-      setTimer(10);
+      setCounterQuestions(10);
     }
-  }, [timer, setResultsGame, setChances]);
+  }, [setResultsGame, setChances, counterQuestions, setCounterQuestions]);
 
   return counterQuestions > 4 ? (
     <>
-      <CounterTimeQuestion>{timer}</CounterTimeQuestion>
+      <CounterTimeQuestion>{counterQuestions}</CounterTimeQuestion>
     </>
   ) : (
     <>
-      <TimeCritical>{resultsGame}</TimeCritical>
+      <TimeCritical>{counterQuestions}</TimeCritical>
     </>
   );
 }

@@ -34,9 +34,14 @@ function Game({
   const [operationTwo, setOperationTwo] = useState();
 
   let numbersEasy = [...Array(10).keys()];
+
   let operations = ["+", "-", "*", "/"];
   let numbersNormal = [...Array(20).keys()];
   let numbersHard = [...Array(100).keys()];
+
+  function isIntegerEasy(a, b) {
+    return a % b === 0;
+  }
 
   function createQuestion() {
     setOperationOne(operations[Math.floor(Math.random() * operations.length)]);
@@ -45,7 +50,19 @@ function Game({
     setCounterQuestions(10);
     setResultReceived("");
 
+    let newNumberOne;
+    let newNumberTwo;
+
     if (difficulty === "Fácil") {
+      do {
+        newNumberOne =
+          numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        newNumberTwo =
+          numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+      } while (
+        operations.includes("/") &&
+        !isIntegerEasy(newNumberOne, newNumberTwo)
+      );
       setNumberOne(numbersEasy[Math.floor(Math.random() * numbersEasy.length)]);
       setNumberTwo(numbersEasy[Math.floor(Math.random() * numbersEasy.length)]);
       setNumberThree(
@@ -68,8 +85,8 @@ function Game({
       }
 
       if (operationOne === "/") {
-        setResultExpected(Math.floor(numberOne / (numberTwo + 1)));
-        setQuestionAsk(`${numberOne} / ${numberTwo + 1}`);
+        setResultExpected(newNumberOne / newNumberTwo);
+        setQuestionAsk(`${newNumberOne} / ${newNumberTwo}`);
       }
 
       // Ultrapassar os 20 Pontos

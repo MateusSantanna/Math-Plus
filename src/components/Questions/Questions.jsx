@@ -17,7 +17,7 @@ function Questions({
       setCorrect(correct + 1);
     }
 
-    if (resultExpected !== +resultReceived) {
+    if (resultExpected !== +resultReceived || resultReceived === "") {
       setResultsGame("Resposta Errada");
       setChances(chances - 1);
     }
