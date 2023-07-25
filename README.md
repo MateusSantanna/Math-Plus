@@ -31,7 +31,7 @@ No Difícil pode cair perguntas como:
 
 As perguntas são infinitas e você tem 3 chances, e 10 segundos para responder cada pergunta.
 
-Se você quiser testar esse site e se divertir enquanto joga, acesse: https://create-react-math-plus.vercel.app/
+Se você quiser testar esse site e se divertir enquanto joga, acesse: https://math-plus.vercel.app/
 
 Para dúvidas e Sugestões, acesse https://www.linkedin.com/in/mateussantanna/ e envie sua mensagem que esclarecerei suas dúvidas a respeito do jogo.
 
