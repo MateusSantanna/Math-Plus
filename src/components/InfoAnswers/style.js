@@ -7,7 +7,7 @@ export const WrongAnswers = styled.div`
 `;
 
 export const ColorDefaultOne = styled.div`
-  background-color: white;
+  background-color: green;
   width: 4rem;
   height: 5rem;
 `;
@@ -25,7 +25,7 @@ export const ColorErrorsOne = styled.div`
 `;
 
 export const ColorDefaultTwo = styled.div`
-  background-color: white;
+  background-color: green;
   width: 4rem;
   height: 5rem;
   margin-left: 3rem;
@@ -44,7 +44,7 @@ export const ColorErrorsTwo = styled.div`
 `;
 
 export const ColorDefaultThree = styled.div`
-  background-color: white;
+  background-color: green;
   width: 4rem;
   height: 5rem;
   margin-left: 3rem;

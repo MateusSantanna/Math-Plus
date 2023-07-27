@@ -7,11 +7,11 @@ export const StyledDivScore = styled.div`
 `;
 
 export const ScoreText = styled.p`
-  color: white;
+  color: black;
   font-size: 1.5rem;
 `;
 
 export const ScoreActual = styled.p`
-  color: white;
+  color: black;
   font-size: 1.5rem;
 `;

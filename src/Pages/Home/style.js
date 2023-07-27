@@ -5,6 +5,10 @@ export const ButtonBegin = styled.button`
   border-radius: 1rem;
   background-color: black;
   padding: 16px 16px 16px 16px;
+
+  :hover {
+    border: 3px solid white;
+  }
 `;
 export const SeparationDifficulty = styled.div`
   display: grid;
@@ -19,6 +23,10 @@ export const ButtonEasy = styled.button`
   height: 3rem;
   border: 0;
   font-size: large;
+
+  :hover {
+    border: 3px solid black;
+  }
 `;
 
 export const ButtonNormal = styled.button`
@@ -31,6 +39,10 @@ export const ButtonNormal = styled.button`
   border: 0;
   margin-top: 1rem;
   font-size: large;
+
+  :hover {
+    border: 3px solid black;
+  }
 `;
 
 export const ButtonHard = styled.button`
@@ -43,14 +55,26 @@ export const ButtonHard = styled.button`
   border: 0;
   margin-top: 1rem;
   font-size: large;
+
+  :hover {
+    border: 3px solid black;
+  }
 `;
 
 export const ButtonBack = styled.button`
   color: white;
   border-radius: 1rem;
   background-color: black;
-  padding: 16px 16px 16px 16px;
-  margin-top: 1rem;
+  padding: 12px 12px 12px 12px;
+  width: 5rem;
+  height: 3rem;
+  margin-top: 3rem;
+  border: 0;
+  font-size: large;
+
+  :hover {
+    border: 3px solid white;
+  }
 `;
 
 export const InfoDifficultyEasy = styled.h1`

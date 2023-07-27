@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledQuestion = styled.div`
+export const StyledNextQuestion = styled.div`
   @media (min-width: 767px) {
   }
 `;
@@ -27,8 +27,3 @@ export const ResultReceived = styled.p`
     color: purple;
   }
 `;
-// export const ParagraphQuestion = styled.p`
-//   @media (min-width: 767px) {
-//     font-size: 2rem;
-//   }
-// `;

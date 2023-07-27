@@ -8,7 +8,7 @@ import NextQuestion from "../../components/NextQuestion/NextQuestion";
 import Questions from "../../components/Questions/Questions";
 import Results from "../../components/Results/Results";
 import Score from "../../components/Score/Score";
-import { StyledScoreAndResult } from "./style";
+import { ExitGame, StyledScoreAndResult } from "./style";
 import { CenterTime } from "../../components/CounterQuestions/style";
 
 function Game({
@@ -38,6 +38,15 @@ function Game({
   let operations = ["+", "-", "*", "/"];
   let numbersNormal = [...Array(20).keys()];
   let numbersHard = [...Array(100).keys()];
+
+  function exitGame() {
+    setBegin(false);
+    setSelect(false);
+    setCounter(3);
+    setCounterQuestions(10);
+    setChances(3);
+    setCorrect(0);
+  }
 
   function isIntegerEasy(a, b) {
     return a % b === 0;
@@ -646,7 +655,9 @@ function Game({
           <>
             <InfoAnswers chances={chances} setChances={setChances} />
           </>
+          <ExitGame onClick={() => exitGame()}>Sair</ExitGame>
         </StyledScoreAndResult>
+
         {resultsGame === "" ? (
           <Questions
             setResultsGame={setResultsGame}

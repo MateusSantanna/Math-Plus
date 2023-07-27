@@ -1,4 +1,9 @@
-import { InputAnswer } from "./style";
+import {
+  InputAnswers,
+  QuestionScreen,
+  StyledQuestions,
+  TitleQuestions,
+} from "./style";
 
 function Questions({
   setResultsGame,
@@ -26,7 +31,6 @@ function Questions({
   const handleChange = (e) => {
     const inputText = e.target.value;
 
-    // Verifica se o input contém somente números negativos e números inteiros positivos
     const isValidInput = /^-?\d*$/.test(inputText);
 
     if (isValidInput) {
@@ -38,15 +42,15 @@ function Questions({
 
   return (
     <>
-      <InputAnswer>
-        <h1>Pergunta</h1>
-        <h1>{questionAsk}</h1>
+      <StyledQuestions>
+        <TitleQuestions>Pergunta</TitleQuestions>
+        <QuestionScreen>{questionAsk}</QuestionScreen>
+      </StyledQuestions>
+
+      <InputAnswers>
         <input required value={resultReceived} onChange={handleChange} />
-      </InputAnswer>
-
-      <div></div>
-
-      <button onClick={() => checkAnswer()}>{confirmar}</button>
+        <button onClick={() => checkAnswer()}>{confirmar}</button>
+      </InputAnswers>
     </>
   );
 }
