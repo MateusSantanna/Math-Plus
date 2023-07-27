@@ -23,22 +23,30 @@ function Questions({
     }
   }
 
+  const handleChange = (e) => {
+    const inputText = e.target.value;
+
+    // Verifica se o input contém somente números negativos e números inteiros positivos
+    const isValidInput = /^-?\d*$/.test(inputText);
+
+    if (isValidInput) {
+      setResultReceived(inputText);
+    }
+  };
+
+  let confirmar = "->";
+
   return (
     <>
       <InputAnswer>
         <h1>Pergunta</h1>
         <h1>{questionAsk}</h1>
-        <input
-          required
-          type="number"
-          value={resultReceived}
-          onChange={(e) => setResultReceived(e.target.value)}
-        />
+        <input required value={resultReceived} onChange={handleChange} />
       </InputAnswer>
 
       <div></div>
 
-      <button onClick={() => checkAnswer()}>Confirmar</button>
+      <button onClick={() => checkAnswer()}>{confirmar}</button>
     </>
   );
 }
