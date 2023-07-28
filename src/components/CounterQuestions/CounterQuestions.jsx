@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { CounterTimeQuestion, TimeCritical } from "./style";
-
+import { CenterTime, CircleContainer, CounterTime, Pointer } from "./style";
 function CounterQuestions({
   counterQuestions,
   setCounterQuestions,
@@ -9,18 +8,18 @@ function CounterQuestions({
   resultsGame,
   setResultsGame,
 }) {
-  // useEffect(() => {
-  //   let interval;
-  //   if (counterQuestions > 0) {
-  //     interval = setInterval(() => {
-  //       setCounterQuestions((counter) => counter - 1);
-  //     }, 1000);
-  //   }
+  useEffect(() => {
+    let interval;
+    if (counterQuestions > 0) {
+      interval = setInterval(() => {
+        setCounterQuestions((counter) => counter - 1);
+      }, 1000);
+    }
 
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [counterQuestions, setCounterQuestions]);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [counterQuestions, setCounterQuestions]);
 
   useEffect(() => {
     if (counterQuestions === 0) {
@@ -31,14 +30,15 @@ function CounterQuestions({
     }
   }, [setResultsGame, setChances, counterQuestions, setCounterQuestions]);
 
-  return counterQuestions > 4 ? (
-    <>
-      <CounterTimeQuestion>{counterQuestions}</CounterTimeQuestion>
-    </>
-  ) : (
-    <>
-      <TimeCritical>{counterQuestions}</TimeCritical>
-    </>
+  return (
+    <CenterTime>
+      <CircleContainer isCritical={counterQuestions <= 4}>
+        <Pointer />
+        <CounterTime isCritical={counterQuestions <= 4}>
+          {counterQuestions}
+        </CounterTime>
+      </CircleContainer>
+    </CenterTime>
   );
 }
 
