@@ -38,8 +38,6 @@ function Questions({
     }
   };
 
-  let confirmar = "->";
-
   return (
     <>
       <StyledQuestions>
@@ -48,8 +46,13 @@ function Questions({
       </StyledQuestions>
 
       <InputAnswers>
-        <input required value={resultReceived} onChange={handleChange} />
-        <button onClick={() => checkAnswer()}>{confirmar}</button>
+        <input
+          required
+          placeholder="Sua resposta"
+          value={resultReceived}
+          onChange={handleChange}
+        />
+        <button onClick={() => checkAnswer()}>→</button>
       </InputAnswers>
     </>
   );

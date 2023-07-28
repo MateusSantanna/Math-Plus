@@ -1,21 +1,16 @@
 import styled from "styled-components";
 
 export const StyledQuestions = styled.div`
-  display: grid;
-  justify-content: center;
-`;
+  width: 100%;
+  @media (min-width: 320px) {
+    display: grid;
+    justify-content: center;
+  }
 
-export const TitleQuestions = styled.h1`
-  width: 9rem;
-  height: 3rem;
-  text-align: center;
-`;
-
-export const QuestionScreen = styled.h1`
-  width: 9rem;
-  height: 3rem;
-  text-align: center;
-  border: 1px solid black;
+  @media (min-width: 426px) {
+    display: flex;
+    justify-content: space-evenly;
+  }
 `;
 
 export const InputAnswers = styled.div`
@@ -27,7 +22,7 @@ export const InputAnswers = styled.div`
     height: 3rem;
     background-color: white;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: black;
     border: 1px solid black;
   }
@@ -36,5 +31,28 @@ export const InputAnswers = styled.div`
     width: 3rem;
     height: 3rem;
     font-size: xx-large;
+    margin-left: 1rem;
+
+  }
+`;
+
+export const TitleQuestions = styled.h1`
+  @media (max-width: 425px) {
+    height: 3rem;
+    font-size: 4rem;
+  }
+
+  @media (min-width: 767px) {
+    width: 15rem;
+    height: 3rem;
+  }
+`;
+
+export const QuestionScreen = styled.h1`
+  border: 1px solid black;
+
+  @media (min-width: 767px) {
+    height: 3rem;
+    text-align: center;
   }
 `;

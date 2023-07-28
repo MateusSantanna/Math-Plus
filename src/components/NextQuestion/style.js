@@ -6,24 +6,24 @@ export const StyledNextQuestion = styled.div`
 `;
 
 export const ParagraphQuestion = styled.p`
+  font-size: 2rem;
+  font-family: Arial Black;
   @media (min-width: 767px) {
-    font-size: 2rem;
-    font-family: Arial Black;
   }
 `;
 
 export const ResultExpected = styled.p`
+  font-size: 2rem;
+  font-family: Arial Black;
+  color: green;
   @media (min-width: 767px) {
-    font-size: 2rem;
-    font-family: Arial Black;
-    color: green;
   }
 `;
 
 export const ResultReceived = styled.p`
+  font-size: 2rem;
+  font-family: Arial Black;
+  color: purple;
   @media (min-width: 767px) {
-    font-size: 2rem;
-    font-family: Arial Black;
-    color: purple;
   }
 `;
