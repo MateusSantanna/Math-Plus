@@ -6,11 +6,6 @@ export const StyledQuestions = styled.div`
     display: grid;
     justify-content: center;
   }
-
-  @media (min-width: 426px) {
-    display: flex;
-    justify-content: space-evenly;
-  }
 `;
 
 export const InputAnswers = styled.div`
@@ -52,7 +47,8 @@ export const QuestionScreen = styled.h1`
   border: 1px solid black;
 
   @media (min-width: 767px) {
-    height: 3rem;
+    height: 4rem;
     text-align: center;
+    font-size: 3rem;
   }
 `;
