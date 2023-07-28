@@ -441,7 +441,9 @@ function Game({
             numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne / newNumberTwo) * newNumberThree);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo} * ${newNumberThree}`);
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}`
+        );
       }
 
       if (operationOne === "/" && operationTwo === "/" && correct >= 10) {
