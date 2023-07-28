@@ -1,40 +1,13 @@
-import {
-  ColorDefaultOne,
-  ColorDefaultThree,
-  ColorDefaultTwo,
-  ColorErrorsOne,
-  ColorErrorsTwo,
-  ColorErrorsThree,
-  WrongAnswers,
-} from "./style";
+import React from "react";
+import { HeartContainer, Heart } from "./style";
 
 function InfoAnswers({ chances }) {
   return (
-    <WrongAnswers>
-      {chances === 3 ? (
-        <ColorDefaultOne></ColorDefaultOne>
-      ) : (
-        <ColorErrorsOne>
-          <h1>X</h1>
-        </ColorErrorsOne>
-      )}
-
-      {chances >= 2 ? (
-        <ColorDefaultTwo></ColorDefaultTwo>
-      ) : (
-        <ColorErrorsTwo>
-          <h1>X</h1>
-        </ColorErrorsTwo>
-      )}
-
-      {chances >= 1 ? (
-        <ColorDefaultThree></ColorDefaultThree>
-      ) : (
-        <ColorErrorsThree>
-          <h1>X</h1>
-        </ColorErrorsThree>
-      )}
-    </WrongAnswers>
+    <HeartContainer>
+      <Heart error={chances < 3} />
+      <Heart error={chances < 2} />
+      <Heart error={chances < 1} />
+    </HeartContainer>
   );
 }
 
