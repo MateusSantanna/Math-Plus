@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
 export const HeartContainer = styled.div`
   display: flex;
@@ -9,6 +9,15 @@ export const HeartContainer = styled.div`
 
 const heartSize = "50px";
 
+const pulse = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+`;
+
 export const Heart = styled.div`
   width: ${heartSize};
   height: ${heartSize};
@@ -17,6 +26,12 @@ export const Heart = styled.div`
   margin-right: 2.5rem;
   position: relative;
   transform: rotate(-45deg);
+  animation: ${(props) =>
+    props.animated && props.error
+      ? css`
+          ${pulse} 0.6s 3
+        `
+      : "none"};
 
   &::before,
   &::after {
