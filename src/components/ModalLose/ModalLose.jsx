@@ -1,4 +1,5 @@
-import { DivGameOver } from "./style";
+import { useState } from "react";
+import { Confetti, DivGameOver } from "./style";
 
 function ModalLose({
   correct,
@@ -8,7 +9,13 @@ function ModalLose({
   setCounter,
   setCounterQuestions,
   setChances,
+  showModal,
+  setShowModal,
 }) {
+  const [loading, setLoading] = useState(true);
+
+  // Simula a carga de informações por 2 segundos
+  setTimeout(() => setLoading(false), 2000);
   function mainMenu() {
     setBegin(false);
     setSelect(false);
@@ -27,14 +34,18 @@ function ModalLose({
 
   return chances === 0 ? (
     <>
-      <DivGameOver>
-        <div>
-          <h1>FIM DE JOGO</h1>
-          <h1>Sua Pontuação foi {correct}</h1>
-          <button onClick={() => backDifficulty()}>Tentar de Novo</button>
-          <button onClick={() => mainMenu()}>Voltar ao Menu Principal</button>
-        </div>
-      </DivGameOver>
+      {loading ? (
+        <DivGameOver>Loading...</DivGameOver>
+      ) : (
+        <DivGameOver className="game-over">
+          <div>
+            <h1>FIM DE JOGO</h1>
+            <h1>Sua Pontuação foi {correct}</h1>
+            <button onClick={() => backDifficulty()}>Tentar de Novo</button>
+            <button onClick={() => mainMenu()}>Voltar ao Menu Principal</button>
+          </div>
+        </DivGameOver>
+      )}
     </>
   ) : null;
 }
