@@ -21,8 +21,8 @@ const fadeOutAnimation = keyframes`
 export const DivGameOver = styled.div`
   background-color: gray;
   color: white;
-  width: 80vw;
-  height: 80vh;
+  width: 85vw;
+  height: 85vh;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -34,5 +34,10 @@ export const DivGameOver = styled.div`
 
   &.fade-out {
     animation: ${fadeOutAnimation} 0.3s ease-in-out;
+  }
+
+  @media (min-width: 320px) and (max-width: 425px) {
+    width: 95vw;
+    height: 95vh;
   }
 `;

@@ -5,6 +5,11 @@ export const HeartContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+
+  @media (min-width: 320px) and (max-width: 425px) {
+    margin-top: 2rem;
+    margin-left: 2rem;
+  }
 `;
 
 const heartSize = "50px";
@@ -29,7 +34,7 @@ export const Heart = styled.div`
   animation: ${(props) =>
     props.animated && props.error
       ? css`
-          ${pulse} 0.6s 3
+          ${pulse} 0.2s 5
         `
       : "none"};
 
