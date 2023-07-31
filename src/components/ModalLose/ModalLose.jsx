@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Confetti, DivGameOver } from "./style";
+import { DivGameOver } from "./style";
+import NextQuestion from "../NextQuestion/NextQuestion";
 
 function ModalLose({
   correct,
@@ -9,8 +10,9 @@ function ModalLose({
   setCounter,
   setCounterQuestions,
   setChances,
-  showModal,
-  setShowModal,
+  resultExpected,
+  resultReceived,
+  questionAsk,
 }) {
   const [loading, setLoading] = useState(true);
 
@@ -44,6 +46,11 @@ function ModalLose({
             <button onClick={() => backDifficulty()}>Tentar de Novo</button>
             <button onClick={() => mainMenu()}>Voltar ao Menu Principal</button>
           </div>
+          <NextQuestion
+            resultExpected={resultExpected}
+            resultReceived={resultReceived}
+            questionAsk={questionAsk}
+          />
         </DivGameOver>
       )}
     </>

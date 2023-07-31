@@ -48,6 +48,10 @@ function Game({
     setCorrect(0);
   }
 
+  function isGreaterThanZero(a, b) {
+    return a - b >= 0;
+  }
+
   function isIntegerEasy(a, b) {
     return a % b === 0;
   }
@@ -109,8 +113,17 @@ function Game({
       }
 
       if (operationOne === "-") {
-        setResultExpected(numberOne - numberTwo);
-        setQuestionAsk(`${numberOne} - ${numberTwo}`);
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          operations.includes("-") &&
+          !isGreaterThanZero(newNumberOne, newNumberTwo)
+        );
+        setResultExpected(newNumberOne - newNumberTwo);
+        setQuestionAsk(`${newNumberOne} - ${newNumberTwo}`);
       }
 
       if (operationOne === "*") {
@@ -120,26 +133,26 @@ function Game({
 
       if (operationOne === "/") {
         setResultExpected(newNumberOne / newNumberTwo);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo}`);
+        setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo}`);
       }
 
-      // Ultrapassar os 20 Pontos
-      if (operationOne === "+" && operationTwo === "+" && correct >= 20) {
+      // Ultrapassar os 25 Pontos
+      if (operationOne === "+" && operationTwo === "+" && correct >= 25) {
         setResultExpected(numberOne + numberTwo + numberThree);
         setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`);
       }
 
-      if (operationOne === "+" && operationTwo === "-" && correct >= 20) {
+      if (operationOne === "+" && operationTwo === "-" && correct >= 25) {
         setResultExpected(numberOne + numberTwo - numberThree);
         setQuestionAsk(`${numberOne} + ${numberTwo} - ${numberThree}`);
       }
 
-      if (operationOne === "+" && operationTwo === "*" && correct >= 20) {
+      if (operationOne === "+" && operationTwo === "*" && correct >= 25) {
         setResultExpected(numberOne + numberTwo * numberThree);
         setQuestionAsk(`${numberOne} + ${numberTwo} * ${numberThree}`);
       }
 
-      if (operationOne === "+" && operationTwo === "/" && correct >= 20) {
+      if (operationOne === "+" && operationTwo === "/" && correct >= 25) {
         do {
           newNumberOne =
             numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
@@ -150,26 +163,26 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne + newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} + ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} + ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
-      if (operationOne === "-" && operationTwo === "+" && correct >= 20) {
+      if (operationOne === "-" && operationTwo === "+" && correct >= 25) {
         setResultExpected(numberOne - numberTwo + numberThree);
         setQuestionAsk(`${numberOne} - ${numberTwo} + ${numberThree}`);
       }
 
-      if (operationOne === "-" && operationTwo === "-" && correct >= 20) {
+      if (operationOne === "-" && operationTwo === "-" && correct >= 25) {
         setResultExpected(numberOne - numberTwo - numberThree);
         setQuestionAsk(`${numberOne} - ${numberTwo} - ${numberThree}`);
       }
 
-      if (operationOne === "-" && operationTwo === "*" && correct >= 20) {
+      if (operationOne === "-" && operationTwo === "*" && correct >= 25) {
         setResultExpected(numberOne - numberTwo * numberThree);
         setQuestionAsk(`${numberOne} - ${numberTwo} * ${numberThree}`);
       }
 
-      if (operationOne === "-" && operationTwo === "/" && correct >= 20) {
+      if (operationOne === "-" && operationTwo === "/" && correct >= 25) {
         do {
           newNumberOne =
             numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
@@ -180,26 +193,26 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne - newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} - ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} - ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
-      if (operationOne === "*" && operationTwo === "+" && correct >= 20) {
+      if (operationOne === "*" && operationTwo === "+" && correct >= 25) {
         setResultExpected(numberOne * numberTwo + numberThree);
         setQuestionAsk(`${numberOne} * ${numberTwo} + ${numberThree}`);
       }
 
-      if (operationOne === "*" && operationTwo === "-" && correct >= 20) {
+      if (operationOne === "*" && operationTwo === "-" && correct >= 25) {
         setResultExpected(numberOne * numberTwo - numberThree);
         setQuestionAsk(`${numberOne} * ${numberTwo} - ${numberThree}`);
       }
 
-      if (operationOne === "*" && operationTwo === "*" && correct >= 20) {
+      if (operationOne === "*" && operationTwo === "*" && correct >= 25) {
         setResultExpected(numberOne * numberTwo * numberThree);
         setQuestionAsk(`${numberOne} * ${numberTwo} * ${numberThree}`);
       }
 
-      if (operationOne === "*" && operationTwo === "/" && correct >= 20) {
+      if (operationOne === "*" && operationTwo === "/" && correct >= 25) {
         do {
           newNumberOne =
             numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
@@ -210,11 +223,11 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne * newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} * ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} * ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
-      if (operationOne === "/" && operationTwo === "+" && correct >= 20) {
+      if (operationOne === "/" && operationTwo === "+" && correct >= 25) {
         do {
           newNumberOne =
             numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
@@ -225,11 +238,11 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo + newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree}`
+          `(${newNumberOne} ÷ ${newNumberTwo}) + ${newNumberThree}`
         );
       }
 
-      if (operationOne === "/" && operationTwo === "-" && correct >= 20) {
+      if (operationOne === "/" && operationTwo === "-" && correct >= 25) {
         do {
           newNumberOne =
             numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
@@ -240,11 +253,11 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo - newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree}`
+          `(${newNumberOne} ÷ ${newNumberTwo}) - ${newNumberThree}`
         );
       }
 
-      if (operationOne === "/" && operationTwo === "*" && correct >= 20) {
+      if (operationOne === "/" && operationTwo === "*" && correct >= 25) {
         do {
           newNumberOne =
             numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
@@ -255,11 +268,11 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne / newNumberTwo) * newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}`
+          `(${newNumberOne} ÷ ${newNumberTwo}) * ${newNumberThree}`
         );
       }
 
-      if (operationOne === "/" && operationTwo === "/" && correct >= 20) {
+      if (operationOne === "/" && operationTwo === "/" && correct >= 25) {
         do {
           newNumberOne =
             numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
@@ -269,7 +282,7 @@ function Game({
             numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo / newNumberThree);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo} / ${newNumberThree}`);
+        setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} ÷ ${newNumberThree}`);
       }
     }
 
@@ -311,7 +324,7 @@ function Game({
 
       if (operationOne === "/") {
         setResultExpected(newNumberOne / newNumberTwo);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo}`);
+        setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo}`);
       }
 
       // Ultrapassar os 10 Pontos
@@ -341,7 +354,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne + newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} + ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} + ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
@@ -371,7 +384,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne - newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} - ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} - ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
@@ -401,7 +414,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne * newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} * ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} * ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
@@ -415,7 +428,7 @@ function Game({
             numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo + newNumberThree);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo} + ${newNumberThree}`);
+        setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} + ${newNumberThree}`);
       }
 
       if (operationOne === "/" && operationTwo === "-" && correct >= 10) {
@@ -428,7 +441,7 @@ function Game({
             numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo - newNumberThree);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo} - ${newNumberThree}`);
+        setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} - ${newNumberThree}`);
       }
 
       if (operationOne === "/" && operationTwo === "*" && correct >= 10) {
@@ -442,7 +455,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne / newNumberTwo) * newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}`
+          `(${newNumberOne} ÷ ${newNumberTwo}) * ${newNumberThree}`
         );
       }
 
@@ -457,7 +470,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} / ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} ÷ ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
     }
@@ -495,7 +508,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne + newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} + ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} + ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
@@ -525,7 +538,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne - newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} - ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} - ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
@@ -555,7 +568,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne * newNumberTwo) / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} * ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} * ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
 
@@ -569,7 +582,7 @@ function Game({
             numbersHard[Math.floor(Math.random() * numbersHard.length)];
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo + newNumberThree);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo} + ${newNumberThree}`);
+        setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} + ${newNumberThree}`);
       }
 
       if (operationOne === "/" && operationTwo === "-") {
@@ -582,7 +595,7 @@ function Game({
             numbersHard[Math.floor(Math.random() * numbersHard.length)];
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo - newNumberThree);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo} - ${newNumberThree}`);
+        setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} - ${newNumberThree}`);
       }
 
       if (operationOne === "/" && operationTwo === "*") {
@@ -595,7 +608,7 @@ function Game({
             numbersHard[Math.floor(Math.random() * numbersHard.length)];
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne / newNumberTwo) * newNumberThree);
-        setQuestionAsk(`${newNumberOne} / ${newNumberTwo} * ${newNumberThree}`);
+        setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} * ${newNumberThree}`);
       }
 
       if (operationOne === "/" && operationTwo === "/") {
@@ -609,7 +622,7 @@ function Game({
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo / newNumberThree);
         setQuestionAsk(
-          `(${newNumberOne} / ${newNumberTwo}) / ${newNumberThree}`
+          `(${newNumberOne} ÷ ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
     }
@@ -677,6 +690,7 @@ function Game({
             resultExpected={resultExpected}
             resultReceived={resultReceived}
             questionAsk={questionAsk}
+            resultsGame={resultsGame}
           />
         )}
 
@@ -698,6 +712,9 @@ function Game({
           setBegin={setBegin}
           setCounter={setCounter}
           setCounterQuestions={setCounterQuestions}
+          resultExpected={resultExpected}
+          resultReceived={resultReceived}
+          questionAsk={questionAsk}
         />
       </>
     );

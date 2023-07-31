@@ -5,7 +5,12 @@ import {
   StyledNextQuestion,
 } from "./style";
 
-export function NextQuestion({ questionAsk, resultExpected, resultReceived }) {
+export function NextQuestion({
+  resultsGame,
+  questionAsk,
+  resultExpected,
+  resultReceived,
+}) {
   return (
     <>
       <>
@@ -15,7 +20,12 @@ export function NextQuestion({ questionAsk, resultExpected, resultReceived }) {
           <ResultExpected>
             A resposta Correta é: {+resultExpected}
           </ResultExpected>
-          <ResultReceived>A sua resposta foi: {resultReceived}</ResultReceived>
+          {resultsGame === "Resposta Correta" ||
+          resultsGame === "Resposta Errada" ? (
+            <ResultReceived>
+              A sua resposta foi: {resultReceived}
+            </ResultReceived>
+          ) : null}
         </StyledNextQuestion>
       </>
     </>

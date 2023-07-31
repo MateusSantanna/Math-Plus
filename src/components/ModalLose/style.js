@@ -1,11 +1,20 @@
 import styled, { keyframes } from "styled-components";
 
-const spinInAnimation = keyframes`
+const fadeInAnimation = keyframes`
   from {
-    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    opacity: 1;
+  }
+`;
+
+const fadeOutAnimation = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 `;
 
@@ -21,11 +30,9 @@ export const DivGameOver = styled.div`
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   z-index: 9999;
-  animation: ${spinInAnimation} 2s linear;
+  animation: ${fadeInAnimation} 0.3s ease-in-out;
 
-  pointer-events: none;
-
-  &.game-over {
-    pointer-events: auto;
+  &.fade-out {
+    animation: ${fadeOutAnimation} 0.3s ease-in-out;
   }
 `;
