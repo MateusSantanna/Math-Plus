@@ -26,12 +26,15 @@ function Game({
   const [correct, setCorrect] = useState(0);
   const [numberOne, setNumberOne] = useState();
   const [numberTwo, setNumberTwo] = useState();
+
   const [numberThree, setNumberThree] = useState();
+  const [numberFour, setNumberFour] = useState();
   const [questionAsk, setQuestionAsk] = useState();
   const [resultExpected, setResultExpected] = useState();
   const [resultReceived, setResultReceived] = useState();
   const [operationOne, setOperationOne] = useState();
   const [operationTwo, setOperationTwo] = useState();
+  const [operationThree, setOperationThree] = useState();
 
   let numbersEasy = [...Array(10).keys()];
 
@@ -80,16 +83,325 @@ function Game({
     }
   }
 
+  function isIntegerUltraHard(a, b, c, d) {
+    if (
+      operationOne === "+" &&
+      operationTwo === "/" &&
+      operationThree === "+"
+    ) {
+      return (a + b) % c === 0;
+    }
+
+    if (
+      operationOne === "+" &&
+      operationTwo === "/" &&
+      operationThree === "-"
+    ) {
+      return (a + b) % c === 0;
+    }
+
+    if (
+      operationOne === "+" &&
+      operationTwo === "/" &&
+      operationThree === "*"
+    ) {
+      return a + (b % c) === 0;
+    }
+
+    if (
+      operationOne === "+" &&
+      operationTwo === "+" &&
+      operationThree === "/"
+    ) {
+      return (a + b + c) % d === 0;
+    }
+
+    if (
+      operationOne === "+" &&
+      operationTwo === "-" &&
+      operationThree === "/"
+    ) {
+      return (a + b - c) % d === 0;
+    }
+
+    if (
+      operationOne === "+" &&
+      operationTwo === "*" &&
+      operationThree === "/"
+    ) {
+      return (a + b * c) % d === 0;
+    }
+
+    if (
+      operationOne === "+" &&
+      operationTwo === "/" &&
+      operationThree === "/"
+    ) {
+      return (a + b / c) % d === 0;
+    }
+
+    if (
+      operationOne === "-" &&
+      operationTwo === "/" &&
+      operationThree === "+"
+    ) {
+      return b % c === 0;
+    }
+
+    if (
+      operationOne === "-" &&
+      operationTwo === "/" &&
+      operationThree === "-"
+    ) {
+      return b % c === 0;
+    }
+
+    if (
+      operationOne === "-" &&
+      operationTwo === "/" &&
+      operationThree === "*"
+    ) {
+      return b % c === 0;
+    }
+
+    if (
+      operationOne === "-" &&
+      operationTwo === "+" &&
+      operationThree === "/"
+    ) {
+      return (a - b + c) % d === 0;
+    }
+
+    if (
+      operationOne === "-" &&
+      operationTwo === "-" &&
+      operationThree === "/"
+    ) {
+      return (a - b - c) % d === 0;
+    }
+
+    if (
+      operationOne === "-" &&
+      operationTwo === "*" &&
+      operationThree === "/"
+    ) {
+      return (a - b * c) % d === 0;
+    }
+
+    if (
+      operationOne === "-" &&
+      operationTwo === "/" &&
+      operationThree === "/"
+    ) {
+      return (a - b / c) % d === 0;
+    }
+
+    //16 IFS COM operationOne === "*"
+
+    if (
+      operationOne === "*" &&
+      operationTwo === "/" &&
+      operationThree === "+"
+    ) {
+      return (a * b) % c === 0;
+    }
+
+    if (
+      operationOne === "*" &&
+      operationTwo === "/" &&
+      operationThree === "-"
+    ) {
+      return (a * b) % c === 0;
+    }
+
+    if (
+      operationOne === "*" &&
+      operationTwo === "/" &&
+      operationThree === "*"
+    ) {
+      return (a * b) % c === 0;
+    }
+
+    if (
+      operationOne === "*" &&
+      operationTwo === "+" &&
+      operationThree === "/"
+    ) {
+      return (a * b + c) % d === 0;
+    }
+
+    if (
+      operationOne === "*" &&
+      operationTwo === "-" &&
+      operationThree === "/"
+    ) {
+      return (a * b - c) % d === 0;
+    }
+
+    if (
+      operationOne === "*" &&
+      operationTwo === "*" &&
+      operationThree === "/"
+    ) {
+      return (a * b * c) % d === 0;
+    }
+
+    if (
+      operationOne === "*" &&
+      operationTwo === "/" &&
+      operationThree === "/"
+    ) {
+      return ((a * b) / c) % d === 0;
+    }
+
+    // 16 IFS COM operationOne === "/"
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "+" &&
+      operationThree === "+"
+    ) {
+      return (a % b) + c === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "-" &&
+      operationThree === "+"
+    ) {
+      return a % b === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "*" &&
+      operationThree === "+"
+    ) {
+      return a % b === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "/" &&
+      operationThree === "+"
+    ) {
+      return (a / b) % c === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "+" &&
+      operationThree === "-"
+    ) {
+      return a % b === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "-" &&
+      operationThree === "-"
+    ) {
+      return a / b === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "*" &&
+      operationThree === "-"
+    ) {
+      return a % b === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "/" &&
+      operationThree === "-"
+    ) {
+      return (a / b) % c === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "+" &&
+      operationThree === "*"
+    ) {
+      return (a % b) + c === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "-" &&
+      operationThree === "*"
+    ) {
+      return a % b === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "*" &&
+      operationThree === "*"
+    ) {
+      return a / b === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "/" &&
+      operationThree === "*"
+    ) {
+      return (a / b) % c === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "+" &&
+      operationThree === "/"
+    ) {
+      return (a / b + c) % d === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "-" &&
+      operationThree === "/"
+    ) {
+      return (a / b - c) % d === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "*" &&
+      operationThree === "/"
+    ) {
+      return ((a / b) * c) % d === 0;
+    }
+
+    if (
+      operationOne === "/" &&
+      operationTwo === "/" &&
+      operationThree === "/"
+    ) {
+      return (a / b / c) % d === 0;
+    }
+  }
+
   function createQuestion() {
     setOperationOne(operations[Math.floor(Math.random() * operations.length)]);
     setOperationTwo(operations[Math.floor(Math.random() * operations.length)]);
+    setOperationThree(
+      operations[Math.floor(Math.random() * operations.length)]
+    );
     setResultsGame("");
     setCounterQuestions(10);
     setResultReceived("");
 
+    console.log(operationOne);
+    console.log(operationTwo);
+    console.log(operationThree);
     let newNumberOne;
     let newNumberTwo;
     let newNumberThree;
+    let newNumberFour;
 
     if (difficulty === "Fácil") {
       do {
@@ -104,6 +416,9 @@ function Game({
       setNumberOne(numbersEasy[Math.floor(Math.random() * numbersEasy.length)]);
       setNumberTwo(numbersEasy[Math.floor(Math.random() * numbersEasy.length)]);
       setNumberThree(
+        numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
+      );
+      setNumberFour(
         numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
       );
 
@@ -284,6 +599,1413 @@ function Game({
         setResultExpected(newNumberOne / newNumberTwo / newNumberThree);
         setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} ÷ ${newNumberThree}`);
       }
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo * numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne + numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+
+      // 16 IFS COM operationOne === "-"
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+
+      // 16 IFS COM operationOne === "*"
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+      if (
+        operationOne === "+" &&
+        operationTwo === "/" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne + newNumberTwo) / newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} + ${newNumberTwo}) / ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "/" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne + newNumberTwo) / newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} + ${newNumberTwo}) / ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "/" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne + (newNumberTwo / newNumberThree) * newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} + (${newNumberTwo} / ${newNumberThree}) * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne + newNumberTwo + newNumberThree / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} + ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne + newNumberTwo - newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} + ${newNumberTwo} - ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne + newNumberTwo * newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} + ${newNumberTwo} * ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "/" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne + newNumberTwo / newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} + ${newNumberTwo} / ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+      if (
+        operationOne === "-" &&
+        operationTwo === "/" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne - newNumberTwo) / newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} - ${newNumberTwo}) / ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "/" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne - newNumberTwo / newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} + ${newNumberTwo} / ${newNumberThree}) - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "/" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne - (newNumberTwo / newNumberThree) * newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} - (${newNumberTwo} / ${newNumberThree}) * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne - newNumberTwo + newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} - ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne - newNumberTwo - newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} - ${newNumberTwo} - ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne - newNumberTwo * newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} - ${newNumberTwo} * ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "/" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne - newNumberTwo / newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} - ${newNumberTwo} / ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+      if (
+        operationOne === "*" &&
+        operationTwo === "/" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne * newNumberTwo) / newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} * ${newNumberTwo}) / ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "/" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne * newNumberTwo) / newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} * ${newNumberTwo}) / ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "/" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          ((newNumberOne * newNumberTwo) / newNumberThree) * newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} * ${newNumberTwo}) / ${newNumberThree}) * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne * newNumberTwo + newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} * ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne * newNumberTwo - newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} * ${newNumberTwo} - ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne * newNumberTwo * newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} * ${newNumberTwo} * ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "/" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne * newNumberTwo) / newNumberThree / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} * ${newNumberTwo}) / ${newNumberThree} / ${newNumberFour}`
+        );
+      }
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo + newNumberThree * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree} * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo / newNumberThree) * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} / ${newNumberThree}) * ${newNumberFour}`
+        );
+      }
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo + newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo + newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo - newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} - ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo) * newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo) * newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          ((newNumberOne / newNumberTwo) * newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree / newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} / ${newNumberFour}`
+        );
+      }
     }
 
     if (difficulty === "Normal") {
@@ -294,6 +2016,9 @@ function Game({
         numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
       );
       setNumberThree(
+        numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
+      );
+      setNumberFour(
         numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
       );
 
@@ -473,6 +2198,765 @@ function Game({
           `(${newNumberOne} ÷ ${newNumberTwo}) ÷ ${newNumberThree}`
         );
       }
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo * numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne + numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+
+      // 16 IFS COM operationOne === "-"
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+
+      // 16 IFS COM operationOne === "*"
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 50
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo + newNumberThree * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree} * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "*" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo / newNumberThree) * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} / ${newNumberThree}) * ${newNumberFour}`
+        );
+      }
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo + newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo + newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo - newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} - ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo) * newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo) * newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          ((newNumberOne / newNumberTwo) * newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "/" &&
+        correct >= 100
+      ) {
+        do {
+          newNumberOne =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberTwo =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberThree =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberFour =
+            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree / newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} / ${newNumberFour}`
+        );
+      }
     }
 
     if (difficulty === "Difícil") {
@@ -481,7 +2965,9 @@ function Game({
       setNumberThree(
         numbersHard[Math.floor(Math.random() * numbersHard.length)]
       );
-
+      setNumberFour(
+        numbersHard[Math.floor(Math.random() * numbersHard.length)]
+      );
       if (operationOne === "+" && operationTwo === "+") {
         setResultExpected(numberOne + numberTwo + numberThree);
         setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`);
@@ -623,6 +3109,765 @@ function Game({
         setResultExpected(newNumberOne / newNumberTwo / newNumberThree);
         setQuestionAsk(
           `(${newNumberOne} ÷ ${newNumberTwo}) ÷ ${newNumberThree}`
+        );
+      }
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "+" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne + numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+
+      // 16 IFS COM operationOne === "-"
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} + ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "-" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne - numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} - ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+
+      // 16 IFS COM operationOne === "*"
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree + numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} + ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree - numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} - ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo + numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} + ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo - numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} - ${numberThree} * ${numberFour}`
+        );
+      }
+
+      if (
+        operationOne === "*" &&
+        operationTwo === "*" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        setResultExpected(numberOne * numberTwo * numberThree * numberFour);
+        setQuestionAsk(
+          `${numberOne} * ${numberTwo} * ${numberThree} * ${numberFour}`
+        );
+      }
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo + newNumberThree * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree} * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} * ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "*" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo / newNumberThree) * newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} / ${newNumberThree}) * ${newNumberFour}`
+        );
+      }
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo + newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo - newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "/" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo + newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "-" &&
+        operationThree === "/" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo - newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo} - ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo) * newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "-" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          (newNumberOne / newNumberTwo) * newNumberThree - newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) - ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "*" &&
+        operationThree === "/" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          ((newNumberOne / newNumberTwo) * newNumberThree) / newNumberFour
+        );
+        setQuestionAsk(
+          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) / ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "/" &&
+        operationThree === "/" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo / newNumberThree / newNumberFour
+        );
+        setQuestionAsk(
+          `${newNumberOne} / ${newNumberTwo} / ${newNumberThree} / ${newNumberFour}`
         );
       }
     }
