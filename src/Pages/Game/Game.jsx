@@ -261,7 +261,7 @@ function Game({
       operationTwo === "+" &&
       operationThree === "+"
     ) {
-      return (a % b) + c === 0;
+      return a % b === 0;
     }
 
     if (
@@ -325,7 +325,7 @@ function Game({
       operationTwo === "+" &&
       operationThree === "*"
     ) {
-      return (a % b) + c === 0;
+      return a % b === 0;
     }
 
     if (
@@ -341,7 +341,7 @@ function Game({
       operationTwo === "*" &&
       operationThree === "*"
     ) {
-      return a / b === 0;
+      return a % b === 0;
     }
 
     if (
@@ -603,7 +603,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "+" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo + numberThree + numberFour);
         setQuestionAsk(
@@ -615,7 +615,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "-" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo - numberThree + numberFour);
         setQuestionAsk(
@@ -627,7 +627,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "*" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo * numberThree + numberFour);
         setQuestionAsk(
@@ -639,7 +639,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "+" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo + numberThree - numberFour);
         setQuestionAsk(
@@ -651,7 +651,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "-" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo - numberThree - numberFour);
         setQuestionAsk(
@@ -663,7 +663,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "*" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo * numberThree - numberFour);
         setQuestionAsk(
@@ -675,7 +675,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "+" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo + numberThree * numberFour);
         setQuestionAsk(
@@ -687,7 +687,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "-" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo - numberThree * numberFour);
         setQuestionAsk(
@@ -699,7 +699,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "*" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne + numberTwo * numberThree * numberFour);
         setQuestionAsk(
@@ -713,7 +713,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "+" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo + numberThree + numberFour);
         setQuestionAsk(
@@ -725,7 +725,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "-" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo - numberThree + numberFour);
         setQuestionAsk(
@@ -737,7 +737,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "*" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo * numberThree + numberFour);
         setQuestionAsk(
@@ -749,7 +749,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "+" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo + numberThree - numberFour);
         setQuestionAsk(
@@ -761,7 +761,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "-" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo - numberThree - numberFour);
         setQuestionAsk(
@@ -773,7 +773,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "*" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo * numberThree - numberFour);
         setQuestionAsk(
@@ -785,11 +785,11 @@ function Game({
         operationOne === "-" &&
         operationTwo === "+" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo + numberThree * numberFour);
         setQuestionAsk(
-          `${numberOne} * ${numberTwo} + ${numberThree} - ${numberFour}`
+          `${numberOne} - ${numberTwo} + ${numberThree} * ${numberFour}`
         );
       }
 
@@ -797,7 +797,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "-" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo - numberThree * numberFour);
         setQuestionAsk(
@@ -809,7 +809,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "*" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne - numberTwo * numberThree * numberFour);
         setQuestionAsk(
@@ -823,7 +823,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "+" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo + numberThree + numberFour);
         setQuestionAsk(
@@ -835,7 +835,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "-" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo - numberThree + numberFour);
         setQuestionAsk(
@@ -847,7 +847,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "*" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo * numberThree + numberFour);
         setQuestionAsk(
@@ -859,7 +859,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "+" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo + numberThree - numberFour);
         setQuestionAsk(
@@ -871,7 +871,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "-" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo - numberThree - numberFour);
         setQuestionAsk(
@@ -883,7 +883,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "*" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo * numberThree - numberFour);
         setQuestionAsk(
@@ -895,7 +895,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "+" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo + numberThree * numberFour);
         setQuestionAsk(
@@ -907,7 +907,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "-" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo - numberThree * numberFour);
         setQuestionAsk(
@@ -919,7 +919,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "*" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         setResultExpected(numberOne * numberTwo * numberThree * numberFour);
         setQuestionAsk(
@@ -930,7 +930,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -961,7 +961,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -992,7 +992,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1023,7 +1023,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1054,7 +1054,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1085,7 +1085,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1116,7 +1116,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1146,7 +1146,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1177,7 +1177,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1208,7 +1208,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1239,7 +1239,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1270,7 +1270,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1301,7 +1301,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1332,7 +1332,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1362,7 +1362,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1393,7 +1393,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1424,7 +1424,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1455,7 +1455,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1486,7 +1486,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1517,7 +1517,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1548,7 +1548,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1578,7 +1578,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1609,7 +1609,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1640,7 +1640,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1671,7 +1671,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1702,7 +1702,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1732,7 +1732,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1758,12 +1758,42 @@ function Game({
           `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} + ${newNumberFour}`
         );
       }
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 70
+      ) {
+        do {
+          newNumberOne =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberTwo =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberThree =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberFour =
+            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo + newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree} + ${newNumberFour}`
+        );
+      }
 
       if (
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1794,7 +1824,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1825,7 +1855,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1856,7 +1886,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1887,7 +1917,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "+" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1918,7 +1948,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "-" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1949,7 +1979,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -1980,7 +2010,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 100
+        correct >= 70
       ) {
         do {
           newNumberOne =
@@ -3620,6 +3650,37 @@ function Game({
         );
         setQuestionAsk(
           `(${newNumberOne} / ${newNumberTwo}) - ${newNumberThree} + ${newNumberFour}`
+        );
+      }
+
+      if (
+        operationOne === "/" &&
+        operationTwo === "+" &&
+        operationThree === "+" &&
+        correct >= 25
+      ) {
+        do {
+          newNumberOne =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberTwo =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberThree =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberFour =
+            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+        } while (
+          !isIntegerUltraHard(
+            newNumberOne,
+            newNumberTwo,
+            newNumberThree,
+            newNumberFour
+          )
+        );
+        setResultExpected(
+          newNumberOne / newNumberTwo + newNumberThree + newNumberFour
+        );
+        setQuestionAsk(
+          `(${newNumberOne} / ${newNumberTwo}) + ${newNumberThree} + ${newNumberFour}`
         );
       }
 
