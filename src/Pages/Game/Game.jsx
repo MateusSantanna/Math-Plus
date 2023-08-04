@@ -23,7 +23,7 @@ function Game({
   setChances,
 }) {
   const [resultsGame, setResultsGame] = useState("");
-  const [correct, setCorrect] = useState(0);
+  const [correct, setCorrect] = useState(69);
   const [numberOne, setNumberOne] = useState();
   const [numberTwo, setNumberTwo] = useState();
 
@@ -41,6 +41,14 @@ function Game({
   let operations = ["+", "-", "*", "/"];
   let numbersNormal = [...Array(20).keys()];
   let numbersHard = [...Array(100).keys()];
+
+  function generateOperations(op) {
+    return op[Math.floor(Math.random() * op.length)];
+  }
+
+  function generateNumber(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
 
   function exitGame() {
     setBegin(false);
@@ -386,41 +394,29 @@ function Game({
   }
 
   function createQuestion() {
-    setOperationOne(operations[Math.floor(Math.random() * operations.length)]);
-    setOperationTwo(operations[Math.floor(Math.random() * operations.length)]);
-    setOperationThree(
-      operations[Math.floor(Math.random() * operations.length)]
-    );
+    setOperationOne(generateOperations(operations));
+    setOperationTwo(generateOperations(operations));
+    setOperationThree(generateOperations(operations));
     setResultsGame("");
     setCounterQuestions(10);
     setResultReceived("");
 
-    console.log(operationOne);
-    console.log(operationTwo);
-    console.log(operationThree);
-    let newNumberOne;
-    let newNumberTwo;
-    let newNumberThree;
-    let newNumberFour;
+    generateNumber(numbersEasy);
+
+    let newNumberOne, newNumberTwo, newNumberThree, newNumberFour;
 
     if (difficulty === "Fácil") {
       do {
-        newNumberOne =
-          numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-        newNumberTwo =
-          numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+        newNumberOne = generateNumber(numbersEasy);
+        newNumberTwo = generateNumber(numbersEasy);
       } while (
         operations.includes("/") &&
         !isIntegerEasy(newNumberOne, newNumberTwo)
       );
-      setNumberOne(numbersEasy[Math.floor(Math.random() * numbersEasy.length)]);
-      setNumberTwo(numbersEasy[Math.floor(Math.random() * numbersEasy.length)]);
-      setNumberThree(
-        numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
-      );
-      setNumberFour(
-        numbersEasy[Math.floor(Math.random() * numbersEasy.length)]
-      );
+      setNumberOne(generateNumber(numbersEasy));
+      setNumberTwo(generateNumber(numbersEasy));
+      setNumberThree(generateNumber(numbersEasy));
+      setNumberFour(generateNumber(numbersEasy));
 
       if (operationOne === "+") {
         setResultExpected(numberOne + numberTwo);
@@ -429,10 +425,8 @@ function Game({
 
       if (operationOne === "-") {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
         } while (
           operations.includes("-") &&
           !isGreaterThanZero(newNumberOne, newNumberTwo)
@@ -469,12 +463,9 @@ function Game({
 
       if (operationOne === "+" && operationTwo === "/" && correct >= 25) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne + newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -499,12 +490,9 @@ function Game({
 
       if (operationOne === "-" && operationTwo === "/" && correct >= 25) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne - newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -529,12 +517,9 @@ function Game({
 
       if (operationOne === "*" && operationTwo === "/" && correct >= 25) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne * newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -544,12 +529,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "+" && correct >= 25) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo + newNumberThree);
         setQuestionAsk(
@@ -559,12 +541,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "-" && correct >= 25) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo - newNumberThree);
         setQuestionAsk(
@@ -574,12 +553,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "*" && correct >= 25) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne / newNumberTwo) * newNumberThree);
         setQuestionAsk(
@@ -589,12 +565,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "/" && correct >= 25) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo / newNumberThree);
         setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} ÷ ${newNumberThree}`);
@@ -933,14 +906,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -964,14 +933,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -995,14 +960,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1026,14 +987,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1057,14 +1014,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1088,14 +1041,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1119,14 +1068,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1149,14 +1094,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1180,14 +1121,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1211,14 +1148,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1242,14 +1175,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1273,14 +1202,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1304,14 +1229,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1335,14 +1256,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1365,14 +1282,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1396,14 +1309,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1427,14 +1336,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1458,14 +1363,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1489,14 +1390,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1520,14 +1417,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1551,14 +1444,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1581,14 +1470,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1612,14 +1497,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1643,14 +1524,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1674,14 +1551,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1705,14 +1578,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1735,14 +1604,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1765,14 +1630,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1796,14 +1657,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1827,14 +1684,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1858,14 +1711,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1889,14 +1738,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1920,14 +1765,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1951,14 +1792,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -1982,14 +1819,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2013,14 +1846,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2044,14 +1873,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersEasy);
+          newNumberTwo = generateNumber(numbersEasy);
+          newNumberThree = generateNumber(numbersEasy);
+          newNumberFour = generateNumber(numbersEasy);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2070,24 +1895,14 @@ function Game({
     }
 
     if (difficulty === "Normal") {
-      setNumberOne(
-        numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
-      );
-      setNumberTwo(
-        numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
-      );
-      setNumberThree(
-        numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
-      );
-      setNumberFour(
-        numbersNormal[Math.floor(Math.random() * numbersNormal.length)]
-      );
+      setNumberOne(generateNumber(numbersNormal));
+      setNumberTwo(generateNumber(numbersNormal));
+      setNumberThree(generateNumber(numbersNormal));
+      setNumberFour(generateNumber(numbersNormal));
 
       do {
-        newNumberOne =
-          numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-        newNumberTwo =
-          numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+        newNumberOne = generateNumber(numbersNormal);
+        newNumberTwo = generateNumber(numbersNormal);
       } while (
         operations.includes("/") &&
         !isIntegerEasy(newNumberOne, newNumberTwo)
@@ -2131,12 +1946,9 @@ function Game({
 
       if (operationOne === "+" && operationTwo === "/" && correct >= 10) {
         do {
-          newNumberOne =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberTwo =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberThree =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne + newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -2161,12 +1973,9 @@ function Game({
 
       if (operationOne === "-" && operationTwo === "/" && correct >= 10) {
         do {
-          newNumberOne =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberTwo =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberThree =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne - newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -2191,12 +2000,9 @@ function Game({
 
       if (operationOne === "*" && operationTwo === "/" && correct >= 10) {
         do {
-          newNumberOne =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberTwo =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberThree =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne * newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -2206,12 +2012,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "+" && correct >= 10) {
         do {
-          newNumberOne =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberTwo =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberThree =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo + newNumberThree);
         setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} + ${newNumberThree}`);
@@ -2219,12 +2022,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "-" && correct >= 10) {
         do {
-          newNumberOne =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberTwo =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberThree =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo - newNumberThree);
         setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} - ${newNumberThree}`);
@@ -2232,12 +2032,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "*" && correct >= 10) {
         do {
-          newNumberOne =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberTwo =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberThree =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne / newNumberTwo) * newNumberThree);
         setQuestionAsk(
@@ -2247,12 +2044,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "/" && correct >= 10) {
         do {
-          newNumberOne =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberTwo =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberThree =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo / newNumberThree);
         setQuestionAsk(
@@ -2495,17 +2289,13 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 100
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberTwo =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberThree =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
-          newNumberFour =
-            numbersNormal[Math.floor(Math.random() * numbersNormal.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2621,17 +2411,13 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2652,17 +2438,13 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2683,17 +2465,13 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2714,17 +2492,13 @@ function Game({
         operationOne === "+" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2745,17 +2519,13 @@ function Game({
         operationOne === "+" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2776,17 +2546,13 @@ function Game({
         operationOne === "+" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2807,17 +2573,13 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2837,17 +2599,13 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2868,17 +2626,13 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2899,17 +2653,13 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2930,17 +2680,13 @@ function Game({
         operationOne === "-" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2961,17 +2707,13 @@ function Game({
         operationOne === "-" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -2992,17 +2734,13 @@ function Game({
         operationOne === "-" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3023,17 +2761,13 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3053,17 +2787,13 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3084,17 +2814,13 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3115,17 +2841,13 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3146,17 +2868,13 @@ function Game({
         operationOne === "*" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3177,17 +2895,13 @@ function Game({
         operationOne === "*" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3208,17 +2922,13 @@ function Game({
         operationOne === "*" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3239,17 +2949,13 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3269,17 +2975,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3300,17 +3002,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3331,17 +3029,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3362,17 +3056,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3393,17 +3083,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3423,17 +3109,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3453,17 +3135,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3484,17 +3162,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3515,17 +3189,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3546,17 +3216,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3577,17 +3243,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3608,17 +3270,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3639,17 +3297,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3670,17 +3324,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3701,17 +3351,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3732,17 +3378,13 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 50
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersNormal);
+          newNumberTwo = generateNumber(numbersNormal);
+          newNumberThree = generateNumber(numbersNormal);
+          newNumberFour = generateNumber(numbersNormal);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -3761,14 +3403,10 @@ function Game({
     }
 
     if (difficulty === "Difícil") {
-      setNumberOne(numbersHard[Math.floor(Math.random() * numbersHard.length)]);
-      setNumberTwo(numbersHard[Math.floor(Math.random() * numbersHard.length)]);
-      setNumberThree(
-        numbersHard[Math.floor(Math.random() * numbersHard.length)]
-      );
-      setNumberFour(
-        numbersHard[Math.floor(Math.random() * numbersHard.length)]
-      );
+      setNumberOne(generateNumber(numbersHard));
+      setNumberTwo(generateNumber(numbersHard));
+      setNumberThree(generateNumber(numbersHard));
+      setNumberFour(generateNumber(numbersHard));
       if (operationOne === "+" && operationTwo === "+") {
         setResultExpected(numberOne + numberTwo + numberThree);
         setQuestionAsk(`${numberOne} + ${numberTwo} + ${numberThree}`);
@@ -3786,12 +3424,9 @@ function Game({
 
       if (operationOne === "+" && operationTwo === "/") {
         do {
-          newNumberOne =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberTwo =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberThree =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne + newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -3816,12 +3451,9 @@ function Game({
 
       if (operationOne === "-" && operationTwo === "/") {
         do {
-          newNumberOne =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberTwo =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberThree =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne - newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -3846,12 +3478,9 @@ function Game({
 
       if (operationOne === "*" && operationTwo === "/") {
         do {
-          newNumberOne =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberTwo =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberThree =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne * newNumberTwo) / newNumberThree);
         setQuestionAsk(
@@ -3861,12 +3490,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "+") {
         do {
-          newNumberOne =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberTwo =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberThree =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo + newNumberThree);
         setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} + ${newNumberThree}`);
@@ -3874,12 +3500,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "-") {
         do {
-          newNumberOne =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberTwo =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberThree =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo - newNumberThree);
         setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} - ${newNumberThree}`);
@@ -3887,12 +3510,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "*") {
         do {
-          newNumberOne =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberTwo =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberThree =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected((newNumberOne / newNumberTwo) * newNumberThree);
         setQuestionAsk(`${newNumberOne} ÷ ${newNumberTwo} * ${newNumberThree}`);
@@ -3900,12 +3520,9 @@ function Game({
 
       if (operationOne === "/" && operationTwo === "/") {
         do {
-          newNumberOne =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberTwo =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
-          newNumberThree =
-            numbersHard[Math.floor(Math.random() * numbersHard.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
         } while (!isIntegerHard(newNumberOne, newNumberTwo, newNumberThree));
         setResultExpected(newNumberOne / newNumberTwo / newNumberThree);
         setQuestionAsk(
@@ -4247,14 +3864,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4278,14 +3891,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4309,14 +3918,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4340,14 +3945,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4371,14 +3972,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4402,14 +3999,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4433,14 +4026,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4463,14 +4052,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4494,14 +4079,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4525,14 +4106,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4556,14 +4133,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4587,14 +4160,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4618,14 +4187,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4649,14 +4214,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4679,14 +4240,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4710,14 +4267,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4741,14 +4294,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4772,14 +4321,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4803,14 +4348,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4834,14 +4375,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4865,14 +4402,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4895,14 +4428,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4926,14 +4455,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4957,14 +4482,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -4988,14 +4509,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5019,14 +4536,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5049,14 +4562,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5079,14 +4588,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5110,14 +4615,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5141,14 +4642,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5172,14 +4669,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5203,14 +4696,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5234,14 +4723,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5265,14 +4750,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5296,14 +4777,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5327,14 +4804,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
@@ -5358,14 +4831,10 @@ function Game({
         correct >= 70
       ) {
         do {
-          newNumberOne =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberTwo =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberThree =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
-          newNumberFour =
-            numbersEasy[Math.floor(Math.random() * numbersEasy.length)];
+          newNumberOne = generateNumber(numbersHard);
+          newNumberTwo = generateNumber(numbersHard);
+          newNumberThree = generateNumber(numbersHard);
+          newNumberFour = generateNumber(numbersHard);
         } while (
           !isIntegerUltraHard(
             newNumberOne,
