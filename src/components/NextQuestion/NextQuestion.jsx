@@ -18,12 +18,12 @@ export function NextQuestion({
           <h1>Pergunta</h1>
           <ParagraphQuestion>{questionAsk}</ParagraphQuestion>
           <ResultExpected>
-            A resposta Correta é: {+resultExpected}
+             Resposta Correta: {+resultExpected}
           </ResultExpected>
           {resultsGame === "Resposta Correta" ||
           resultsGame === "Resposta Errada" ? (
             <ResultReceived>
-              A sua resposta foi: {resultReceived}
+            Sua resposta: {resultReceived}
             </ResultReceived>
           ) : null}
         </StyledNextQuestion>
