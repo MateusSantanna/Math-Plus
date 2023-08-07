@@ -7,8 +7,7 @@ export const HeartContainer = styled.div`
   margin-top: 2rem;
 
   @media (min-width: 320px) and (max-width: 425px) {
-    margin-top: 2rem;
-    margin-left: 2rem;
+    margin-left: 3rem;
   }
 `;
 
@@ -61,5 +60,46 @@ export const Heart = styled.div`
   h1 {
     font-size: 2rem;
     color: white;
+  }
+
+  @media (min-width: 320px) and (max-width: 425px) {
+    width: 25px;
+    height: 25px;
+    background-color: ${(props) => (props.error ? "black" : "red")};
+
+    margin-right: 2.5rem;
+    position: relative;
+    transform: rotate(-45deg);
+    animation: ${(props) =>
+      props.animated && props.error
+        ? css`
+            ${pulse} 0.2s 5
+          `
+        : "none"};
+
+    &::before,
+    &::after {
+      content: "";
+      width: 25px;
+      height: 25px;
+      background-color: ${(props) => (props.error ? "black" : "red")};
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    &::before {
+      top: -12.5px;
+      left: 0;
+    }
+
+    &::after {
+      top: 0;
+      left: 12.5px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: white;
+    }
   }
 `;

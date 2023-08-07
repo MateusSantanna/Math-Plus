@@ -4,6 +4,7 @@ import {
   StyledQuestions,
   TitleQuestions,
 } from "./style";
+import { OneToFiveClick, SixToFinalClick } from "./style";
 
 function Questions({
   setResultsGame,
@@ -54,6 +55,51 @@ function Questions({
         />
         <button onClick={() => checkAnswer()}>→</button>
       </InputAnswers>
+
+      <OneToFiveClick>
+        <button onClick={() => setResultReceived(resultReceived + "-")}>
+          -
+        </button>
+        <button onClick={() => setResultReceived(resultReceived + "1")}>
+          1
+        </button>
+        <button onClick={() => setResultReceived(resultReceived + "2")}>
+          2
+        </button>
+        <button onClick={() => setResultReceived(resultReceived + "3")}>
+          3
+        </button>
+        <button onClick={() => setResultReceived(resultReceived + "4")}>
+          4
+        </button>
+        <button onClick={() => setResultReceived(resultReceived + "5")}>
+          5
+        </button>
+      </OneToFiveClick>
+
+      <SixToFinalClick>
+        <button onClick={() => setResultReceived(resultReceived + "6")}>
+          6
+        </button>
+
+        <button onClick={() => setResultReceived(resultReceived + "7")}>
+          7
+        </button>
+        <button onClick={() => setResultReceived(resultReceived + "8")}>
+          8
+        </button>
+        <button onClick={() => setResultReceived(resultReceived + "9")}>
+          9
+        </button>
+
+        <button onClick={() => setResultReceived(resultReceived + "0")}>
+          0
+        </button>
+
+        <button onClick={() => setResultReceived(resultReceived.slice(0, -1))}>
+          ←
+        </button>
+      </SixToFinalClick>
     </>
   );
 }

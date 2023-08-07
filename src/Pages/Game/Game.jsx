@@ -23,7 +23,7 @@ function Game({
   setChances,
 }) {
   const [resultsGame, setResultsGame] = useState("");
-  const [correct, setCorrect] = useState(69);
+  const [correct, setCorrect] = useState(0);
   const [numberOne, setNumberOne] = useState();
   const [numberTwo, setNumberTwo] = useState();
 
@@ -400,8 +400,6 @@ function Game({
     setResultsGame("");
     setCounterQuestions(10);
     setResultReceived("");
-
-    generateNumber(numbersEasy);
 
     let newNumberOne, newNumberTwo, newNumberThree, newNumberFour;
 
@@ -1000,7 +998,7 @@ function Game({
           )
         );
         setResultExpected(
-          newNumberOne + newNumberTwo + newNumberThree / newNumberFour
+          (newNumberOne + newNumberTwo + newNumberThree) / newNumberFour
         );
         setQuestionAsk(
           `(${newNumberOne} + ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
@@ -2508,7 +2506,7 @@ function Game({
           )
         );
         setResultExpected(
-          newNumberOne + newNumberTwo + newNumberThree / newNumberFour
+          (newNumberOne + newNumberTwo + newNumberThree) / newNumberFour
         );
         setQuestionAsk(
           `(${newNumberOne} + ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
@@ -3888,7 +3886,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -3915,7 +3913,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -3942,7 +3940,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -3958,7 +3956,7 @@ function Game({
           )
         );
         setResultExpected(
-          newNumberOne + newNumberTwo + newNumberThree / newNumberFour
+          (newNumberOne + newNumberTwo + newNumberThree) / newNumberFour
         );
         setQuestionAsk(
           `(${newNumberOne} + ${newNumberTwo} + ${newNumberThree}) / ${newNumberFour}`
@@ -3969,7 +3967,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -3996,7 +3994,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4023,7 +4021,7 @@ function Game({
         operationOne === "+" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4049,7 +4047,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4076,7 +4074,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4103,7 +4101,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4130,7 +4128,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4157,7 +4155,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4184,7 +4182,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4211,7 +4209,7 @@ function Game({
         operationOne === "-" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4237,7 +4235,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4264,7 +4262,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4291,7 +4289,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4318,7 +4316,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4345,7 +4343,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4372,7 +4370,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4399,7 +4397,7 @@ function Game({
         operationOne === "*" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4425,7 +4423,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4452,7 +4450,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4479,7 +4477,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4506,7 +4504,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4533,7 +4531,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4559,7 +4557,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4585,7 +4583,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4612,7 +4610,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4639,7 +4637,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4666,7 +4664,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "+" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4693,7 +4691,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "-" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4720,7 +4718,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "+" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4747,7 +4745,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "*" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4774,7 +4772,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "-" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4801,7 +4799,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "*" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4828,7 +4826,7 @@ function Game({
         operationOne === "/" &&
         operationTwo === "/" &&
         operationThree === "/" &&
-        correct >= 70
+        correct >= 25
       ) {
         do {
           newNumberOne = generateNumber(numbersHard);
@@ -4899,17 +4897,19 @@ function Game({
         </StyledScoreAndResult>
 
         {resultsGame === "" ? (
-          <Questions
-            setResultsGame={setResultsGame}
-            chances={chances}
-            setChances={setChances}
-            correct={correct}
-            setCorrect={setCorrect}
-            resultExpected={resultExpected}
-            resultReceived={resultReceived}
-            setResultReceived={setResultReceived}
-            questionAsk={questionAsk}
-          />
+          <>
+            <Questions
+              setResultsGame={setResultsGame}
+              chances={chances}
+              setChances={setChances}
+              correct={correct}
+              setCorrect={setCorrect}
+              resultExpected={resultExpected}
+              resultReceived={resultReceived}
+              setResultReceived={setResultReceived}
+              questionAsk={questionAsk}
+            />
+          </>
         ) : (
           <NextQuestion
             resultExpected={resultExpected}

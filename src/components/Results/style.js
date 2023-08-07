@@ -10,8 +10,8 @@ export const ScoreCorrect = styled.h1`
   line-height: 3rem;
 
   @media (min-width: 320px) and (max-width: 425px) {
-    width: 12.25rem;
-    height: 5.25rem;
+    width: 10rem;
+    height: 4rem;
     margin: auto;
   }
 
@@ -29,8 +29,8 @@ export const ScoreWrong = styled.h1`
   margin-top: 2rem;
 
   @media (min-width: 320px) and (max-width: 425px) {
-    width: 12rem;
-    height: 5rem;
+    width: 10rem;
+    height: 4rem;
     margin: auto;
   }
 
