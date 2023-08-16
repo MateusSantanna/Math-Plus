@@ -15,7 +15,7 @@ export const ExitGame = styled.button`
   height: 2rem;
   margin-top: 2.5rem;
 
-  @media (min-width: 320px) and (max-width: 425px) {
+  @media (min-width: 320px) and (max-width: 725px) {
     position: absolute;
     right: 20px;
     top: 15%;

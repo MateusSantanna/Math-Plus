@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const StyledQuestions = styled.div`
-  width: 100%;
-  @media (min-width: 320px) {
-    display: grid;
-    justify-content: center;
+  @media (min-width: 550px) {
+    display: flex;
+    justify-content: space-around;
   }
 `;
 
@@ -35,26 +34,14 @@ export const InputAnswers = styled.div`
 `;
 
 export const TitleQuestions = styled.h1`
-  @media (min-width: 320px) and (max-width: 425px) {
-    height: 1rem;
-  }
-
-  @media (min-width: 767px) {
-    width: 15rem;
-    height: 3rem;
-    font-size: 4rem;
-  }
+  font-size: 3rem;
 `;
 
 export const QuestionScreen = styled.h1`
   border: 1px solid black;
-
-  @media (min-width: 767px) {
-    height: 4rem;
-    text-align: center;
-    font-size: 3rem;
-  }
+  font-size: 3rem;
 `;
+
 export const OneToFiveClick = styled.div`
   display: flex;
   justify-content: center;

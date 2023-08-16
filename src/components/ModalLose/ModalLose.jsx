@@ -16,7 +16,6 @@ function ModalLose({
 }) {
   const [loading, setLoading] = useState(true);
 
-  // Simula a carga de informações por 2 segundos
   setTimeout(() => setLoading(false), 2000);
   function mainMenu() {
     setBegin(false);
