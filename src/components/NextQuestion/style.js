@@ -15,7 +15,7 @@ export const ParagraphQuestion = styled.p`
 export const ResultExpected = styled.p`
   font-size: 2rem;
   font-family: Arial Black;
-  color: green;
+  color: #228B22;
   @media (min-width: 767px) {
   }
 `;
