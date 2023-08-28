@@ -41,7 +41,7 @@ function ModalLose({
         <DivGameOver className="game-over">
           <div>
             <h1>FIM DE JOGO</h1>
-            <h1>Sua Pontuação foi {correct}</h1>
+            <h1>Sua Pontuação: {correct}</h1>
             <button onClick={() => backDifficulty()}>Tentar de Novo</button>
             <button onClick={() => mainMenu()}>Voltar ao Menu Principal</button>
           </div>
