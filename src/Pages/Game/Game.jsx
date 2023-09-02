@@ -1135,7 +1135,7 @@ function Game({
           newNumberOne - newNumberTwo / newNumberThree - newNumberFour
         );
         setQuestionAsk(
-          `(${newNumberOne} + ${newNumberTwo} / ${newNumberThree}) - ${newNumberFour}`
+          `(${newNumberOne} - ${newNumberTwo} / ${newNumberThree}) - ${newNumberFour}`
         );
       }
 
@@ -1806,7 +1806,7 @@ function Game({
           (newNumberOne / newNumberTwo) * newNumberThree * newNumberFour
         );
         setQuestionAsk(
-          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) * ${newNumberFour}`
+          `(${newNumberOne} / ${newNumberTwo}) * ${newNumberThree} * ${newNumberFour}`
         );
       }
 
@@ -1833,7 +1833,7 @@ function Game({
           (newNumberOne / newNumberTwo) * newNumberThree - newNumberFour
         );
         setQuestionAsk(
-          `((${newNumberOne} / ${newNumberTwo}) * ${newNumberThree}) - ${newNumberFour}`
+          `(${newNumberOne} / ${newNumberTwo}) * ${newNumberThree} - ${newNumberFour}`
         );
       }
 
@@ -2643,7 +2643,7 @@ function Game({
           newNumberOne - newNumberTwo / newNumberThree - newNumberFour
         );
         setQuestionAsk(
-          `(${newNumberOne} + ${newNumberTwo} / ${newNumberThree}) - ${newNumberFour}`
+          `(${newNumberOne} - ${newNumberTwo} / ${newNumberThree}) - ${newNumberFour}`
         );
       }
 
