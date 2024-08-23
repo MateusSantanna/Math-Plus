@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledDivScore = styled.div`
-  @media (min-width: 320px) and (max-width: 425px) {
+  @media (min-width: 320px) and (max-width: 625px) {
     display: flex;
     justify-content: space-evenly;
     height: 1rem;
