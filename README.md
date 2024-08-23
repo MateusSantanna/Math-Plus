@@ -3,9 +3,18 @@
 
 Esse projeto pessoal foi construído com o objetivo de criar uma página aonde o jogador responde perguntas de Matemática, de acordo com a dificuldade selecionada e nesse jogo tem 3 dificuldades:
 
-Esse projeto foi desenvolvido usando: React e Javascript utilizando apenas estados(useState) e estilização padronizado do React(style-components)
+Esse projeto foi desenvolvido usando: React e Javascript utilizando apenas estados(useState) e estilização padronizado do React(style-components).
+
+# Layout do Desktop:
+![Desktop](https://github.com/user-attachments/assets/e04df025-3cd0-49e6-bfd2-ff8545ae7132)
+
+
+# Layout do Mobile:
+![Mobile](https://github.com/user-attachments/assets/95f44031-dfd3-497e-bbb5-58888822e3c7)
+
 
 ## Fácil
+
 
 No Fácil pode cair perguntas como: 
 (2+1)
